@@ -1,0 +1,545 @@
+test results
+
+kCGeom
+
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCGeom.py"
+norm: 0.010735057299357404
+time to solve 57.716370820999146 seconds
+Enorm: 4.7771438995536904e-05
+time to solve 26.506340742111206 seconds
+time to gen ensemble 1.16373872756958 seconds
+time to compute cf measures 10.737236976623535 seconds
+time to compute net measures 8.885263919830322 seconds
+time to compute ra_s 9.431013345718384 seconds
+time to compute ra_w 0.9722247123718262 seconds
+.
+======================================================================
+ERROR: test_directed (__main__.test_kCGeom)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCGeom.py", line 137, in test_directed
+    G.gen_ensemble()
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\../src\DyGyS\Directed_class.py", line 459, in gen_ensemble
+    w_mat_ensemble = eF.discrete_ensemble_matrix_directed(self.params,self.adjacency,self.model,self.exogenous_variables,
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\../src\DyGyS\ensemble_Functions.py", line 676, in discrete_ensemble_matrix_directed
+    w_mat_array = rng.geometric(p=prob,size=n_ensemble).astype(np.float64)
+  File "_generator.pyx", line 3224, in numpy.random._generator.Generator.geometric
+  File "_common.pyx", line 865, in numpy.random._common.disc
+  File "_common.pyx", line 398, in numpy.random._common.check_constraint
+ValueError: p <= 0, p > 1 or p contains NaNs
+
+----------------------------------------------------------------------
+Ran 2 tests in 116.032s
+
+FAILED (errors=1)
+
+---
+kCExp
+
+norm 2.5641252534569503e-06
+time to solve 25.038361072540283 seconds
+time to gen ensemble 24.405484676361084 seconds
+Fnorm 3.0590700035304508e-06
+time to solve 5.858969211578369 seconds
+time to gen ensemble 20.434500217437744 seconds
+time to compute cf measures 10.384360790252686 seconds
+time to compute net measures 9.745430707931519 seconds
+time to compute ra_s 8.11538052558899 seconds
+time to compute ra_w 1.057117223739624 seconds
+.
+======================================================================
+FAIL: test_directed (__main__.test_kCExp)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCExp.py", line 142, in test_directed
+    self.assertTrue(np.all(G.w_ensemble_matrix >= 0.), "all matrices must be non-negative")
+AssertionError: False is not true : all matrices must be non-negative
+
+----------------------------------------------------------------------
+Ran 2 tests in 105.286s
+
+FAILED (failures=1)
+
+---
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCGamma.py"
+time to solve 62.24305510520935 seconds
+time to gen ensemble 28.74404501914978 seconds
+time to compute cf measures 10.399356126785278 seconds
+time to compute net measures 11.407634496688843 seconds
+time to compute ra_s 8.149406433105469 seconds
+time to compute ra_w 1.2273204326629639 seconds
+.time to solve 51.58521318435669 seconds
+time to gen ensemble 23.21094822883606 seconds
+time to compute cf measures 2.250218391418457 seconds
+time to compute net measures 3.315477132797241 seconds
+time to compute ra_s 3.1875500679016113 seconds
+time to compute ra_w 0.6213724613189697 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 206.629s
+
+OK
+
+---
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCLognormal.py"
+k-CLognormal
+time to solve 18.54715895652771 seconds
+time to gen ensemble 23.237639665603638 seconds
+Ftime to solve 5.0080201625823975 seconds
+time to gen ensemble 23.10416316986084 seconds
+F
+======================================================================
+FAIL: test_directed (__main__.test_kCLognormal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCLognormal.py", line 138, in test_directed
+    self.assertTrue(np.all(G.w_ensemble_matrix >= 0.), "all matrices must be non-negative")
+AssertionError: False is not true : all matrices must be non-negative
+
+======================================================================
+FAIL: test_undirected (__main__.test_kCLognormal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCLognormal.py", line 98, in test_undirected
+    self.assertTrue(np.all(G.w_ensemble_matrix >= 0.), "all matrices must be non-negative")
+AssertionError: False is not true : all matrices must be non-negative
+
+----------------------------------------------------------------------
+Ran 2 tests in 70.170s
+
+FAILED (failures=2)
+---
+
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCPareto.py"
+k-CPareto
+norm 2.128903193582476e-05
+time to solve 53.9486780166626 seconds
+Fnorm 1.3333475597533243e-05
+time to solve 27.222500562667847 seconds
+F
+======================================================================
+FAIL: test_directed (__main__.test_kCPareto)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCPareto.py", line 133, in test_directed
+    self.assertTrue(G.norm < 1e-05, "model has not been solved with tol = 1e-05")
+AssertionError: False is not true : model has not been solved with tol = 1e-05
+
+======================================================================
+FAIL: test_undirected (__main__.test_kCPareto)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kCPareto.py", line 92, in test_undirected
+    self.assertTrue(G.norm < 1e-05, "model has not been solved with tol = 1e-05")
+AssertionError: False is not true : model has not been solved with tol = 1e-05
+
+----------------------------------------------------------------------
+Ran 2 tests in 81.449s
+
+FAILED (failures=2)
+
+
+---
+ python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kIExp.py"
+time to solve 55.438554763793945 seconds
+Ftime to solve 10.169296264648438 seconds
+F
+======================================================================
+FAIL: test_directed (__main__.test_kIExp)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kIExp.py", line 130, in test_directed
+    self.assertTrue(G.norm < 1e-05, "model has not been solved with tol = 1e-05")
+AssertionError: False is not true : model has not been solved with tol = 1e-05
+
+======================================================================
+FAIL: test_undirected (__main__.test_kIExp)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_kIExp.py", line 90, in test_undirected
+    self.assertTrue(G.norm < 1e-05, "model has not been solved with tol = 1e-05")
+AssertionError: False is not true : model has not been solved with tol = 1e-05
+
+----------------------------------------------------------------------
+Ran 2 tests in 65.804s
+
+FAILED (failures=2)
+
+---
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCExp.py"
+L-CExp
+time to solve 4.329819917678833 seconds
+time to gen ensemble 26.31756854057312 seconds
+Ftime to solve 0.9713869094848633 seconds
+time to gen ensemble 19.585643768310547 seconds
+time to compute cf measures 9.308977842330933 seconds
+time to compute net measures 7.500061511993408 seconds
+time to compute ra_s 7.885210037231445 seconds
+time to compute ra_w 1.1045951843261719 seconds
+.
+======================================================================
+FAIL: test_directed (__main__.test_LCExp)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCExp.py", line 138, in test_directed
+    self.assertTrue(np.all(G.w_ensemble_matrix >= 0.), "all matrices must be non-negative")
+AssertionError: False is not true : all matrices must be non-negative
+
+----------------------------------------------------------------------
+Ran 2 tests in 77.281s
+
+FAILED (failures=1)
+
+---
+L-CGamma
+time to solve 40.40959572792053 seconds
+Ftime to solve 32.58990955352783 seconds
+F
+======================================================================
+FAIL: test_directed (__main__.test_LCGamma)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCGamma.py", line 131, in test_directed
+    self.assertTrue(G.norm < 1e-05, "model has not been solved with tol = 1e-05")
+AssertionError: False is not true : model has not been solved with tol = 1e-05
+
+======================================================================
+FAIL: test_undirected (__main__.test_LCGamma)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCGamma.py", line 91, in test_undirected
+    self.assertTrue(G.norm < 1e-05, "model has not been solved with tol = 1e-05")
+AssertionError: False is not true : model has not been solved with tol = 1e-05
+
+----------------------------------------------------------------------
+Ran 2 tests in 73.212s
+
+FAILED (failures=2)
+
+---
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCGeom.py"
+L-CGeom
+norm 0.0008506911105987669
+time to solve 30.59735369682312 seconds
+time to gen ensemble 1.2220652103424072 seconds
+time to compute cf measures 8.576008319854736 seconds
+time to compute net measures 9.167011737823486 seconds
+time to compute ra_s 6.756277561187744 seconds
+time to compute ra_w 0.929781436920166 seconds
+.norm 2.8868270126298776e-06
+time to solve 15.890411138534546 seconds
+time to gen ensemble 0.7099635601043701 seconds
+time to compute cf measures 2.3320565223693848 seconds
+time to compute net measures 3.2510032653808594 seconds
+time to compute ra_s 3.108868360519409 seconds
+time to compute ra_w 0.6138401031494141 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 83.600s
+
+OK
+---
+
+
+L-CLognormal
+directed norm 1.2649527351980994e-09
+directed time to solve 1.8918123245239258 seconds
+directed time to gen ensemble 20.81156635284424 seconds
+Fundirected norm 2.589398016035825e-09
+undirected time to solve 0.15751171112060547 seconds
+undirected time to gen ensemble 16.521501302719116 seconds
+F
+======================================================================
+FAIL: test_directed (__main__.test_LCLognormal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCLognormal.py", line 141, in test_directed
+    self.assertTrue(np.all(G.w_ensemble_matrix >= 0.), "all matrices must be non-negative")
+AssertionError: False is not true : all matrices must be non-negative
+
+======================================================================
+FAIL: test_undirected (__main__.test_LCLognormal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCLognormal.py", line 100, in test_undirected
+    self.assertTrue(np.all(G.w_ensemble_matrix >= 0.), "all matrices must be non-negative")
+AssertionError: False is not true : all matrices must be non-negative
+
+----------------------------------------------------------------------
+Ran 2 tests in 39.640s
+
+FAILED (failures=2)
+
+---
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCPareto.py"
+directed norm 2.128903193582476e-05
+directed time to solve 22.664246559143066 seconds
+directed time to gen ensemble 21.6362087726593 seconds
+directed time to compute cf measures 8.627083539962769 seconds
+directed time to compute net measures 8.276478290557861 seconds
+directed time to compute ra_s 6.2959630489349365 seconds
+directed time to compute ra_w 0.9891295433044434 seconds
+.undirected norm 1.3333475597533243e-05
+undirected time to solve 16.22053074836731 seconds
+undirected time to gen ensemble 16.953832626342773 seconds
+undirected time to compute cf measures 2.1290488243103027 seconds
+undirected time to compute net measures 2.6677114963531494 seconds
+undirected time to compute ra_s 3.0686216354370117 seconds
+undirected time to compute ra_w 0.6910848617553711 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 110.504s
+
+OK
+
+---
+directed norm 3.4179509142973075e-06
+directed time to solve 24.17599606513977 seconds
+directed time to gen ensemble 20.806316137313843 seconds
+Fundirected norm 2.1026964773795953e-06
+undirected time to solve 17.118688583374023 seconds
+undirected time to gen ensemble 16.584117650985718 seconds
+undirected time to compute cf measures 8.092641115188599 seconds
+undirected time to compute net measures 7.039537668228149 seconds
+undirected time to compute ra_s 6.713489055633545 seconds
+undirected time to compute ra_w 0.9724996089935303 seconds
+.
+======================================================================
+FAIL: test_directed (__main__.test_LIExp)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LIExp.py", line 144, in test_directed
+    self.assertTrue(np.all(G.w_ensemble_matrix >= 0.), "all matrices must be non-negative")
+AssertionError: False is not true : all matrices must be non-negative
+
+----------------------------------------------------------------------
+Ran 2 tests in 101.763s
+
+FAILED (failures=1)
+
+---
+directed norm 2.982094883918762e-06
+directed time to solve 38.03749442100525 seconds
+directed time to gen ensemble 1.238316535949707 seconds
+directed time to compute cf measures 8.40451717376709 seconds
+directed time to compute net measures 9.268335342407227 seconds
+directed time to compute ra_s 6.518241882324219 seconds
+directed time to compute ra_w 0.9414763450622559 seconds
+.undirected norm 9.080395102500916e-06
+undirected time to solve 16.625051498413086 seconds
+undirected time to gen ensemble 0.7621724605560303 seconds
+undirected time to compute cf measures 2.1984736919403076 seconds
+undirected time to compute net measures 2.7451815605163574 seconds
+undirected time to compute ra_s 3.165191411972046 seconds
+undirected time to compute ra_w 0.584723711013794 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 90.752s
+
+OK
+---
+
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_Negative_Binomial.py"
+directed norm 6.589750967123109e-11
+directed time to solve 2.641176223754883 seconds
+directed time to gen ensemble 3.187103271484375 seconds
+directed time to compute cf measures 8.61976432800293 seconds
+directed time to compute net measures 9.515491008758545 seconds
+directed time to compute ra_s 7.300725221633911 seconds
+directed time to compute ra_w 0.9121530055999756 seconds
+.undirected norm 4.9550585856650287e-11
+undirected time to solve 0.9830451011657715 seconds
+undirected time to gen ensemble 1.7827672958374023 seconds
+undirected time to compute cf measures 2.6182522773742676 seconds
+undirected time to compute net measures 3.148704767227173 seconds
+undirected time to compute ra_s 3.426107883453369 seconds
+undirected time to compute ra_w 0.5482983589172363 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 44.955s
+
+OK
+
+--- 
+directed norm 4.872356385021703e-08
+directed time to solve 20.65594983100891 seconds
+directed time to gen ensemble 1.3083558082580566 seconds
+directed time to compute cf measures 7.910987854003906 seconds
+directed time to compute net measures 8.702788829803467 seconds
+directed time to compute ra_s 6.830167293548584 seconds
+directed time to compute ra_w 0.9671134948730469 seconds
+.undirected norm 7.392327461275272e-08
+undirected time to solve 16.378463983535767 seconds
+undirected time to gen ensemble 0.6803402900695801 seconds
+undirected time to compute cf measures 2.1217455863952637 seconds
+undirected time to compute net measures 2.7279703617095947 seconds
+undirected time to compute ra_s 2.890810966491699 seconds
+undirected time to compute ra_w 0.5853431224822998 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 72.049s
+
+OK
+
+---
+directed norm 495.76109937485245
+directed time to solve 28.09064245223999 seconds
+Fundirected norm 5.414185430192779e-11
+undirected time to solve 7.809331893920898 seconds
+undirected time to gen ensemble 2.098210096359253 seconds
+undirected time to compute cf measures 8.743139505386353 seconds
+undirected time to compute net measures 7.855815172195435 seconds
+undirected time to compute ra_s 7.009212493896484 seconds
+undirected time to compute ra_w 0.9889392852783203 seconds
+.
+======================================================================
+FAIL: test_directed (__main__.test_ZINB)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_ZINB.py", line 137, in test_directed
+    self.assertTrue(G.norm < 1e-03, "model has not been solved with tol = 1e-03")
+AssertionError: False is not true : model has not been solved with tol = 1e-03
+
+----------------------------------------------------------------------
+Ran 2 tests in 62.849s
+
+FAILED (failures=1)
+----
+
+directed norm 1.236389834957663e-08
+directed time to solve 1.990037441253662 seconds
+directed time to gen ensemble 1.7051122188568115 seconds
+directed time to compute cf measures 8.092906475067139 seconds
+directed time to compute net measures 8.891842365264893 seconds
+directed time to compute ra_s 6.41787052154541 seconds
+directed time to compute ra_w 0.9103128910064697 seconds
+.undirected norm 1.6207309272431303e-08
+undirected time to solve 0.5581486225128174 seconds
+undirected time to gen ensemble 0.9718668460845947 seconds
+undirected time to compute cf measures 2.1965115070343018 seconds
+undirected time to compute net measures 2.829493999481201 seconds
+undirected time to compute ra_s 2.895763635635376 seconds
+undirected time to compute ra_w 0.5808086395263672 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 38.310s
+
+OK
+
+------------------------------------------------------------------------------------------------------------------
+Without numba.parallel
+
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCExp.py"
+L-CExp
+time to solve 5.092089891433716 seconds
+time to gen ensemble 9.780312299728394 seconds
+time to compute cf measures 12.431221723556519 seconds
+time to compute net measures 11.627351999282837 seconds
+time to compute ra_s 8.999351739883423 seconds
+time to compute ra_w 1.7831780910491943 seconds
+.time to solve 0.8844797611236572 seconds
+time to gen ensemble 6.034443616867065 seconds
+time to compute cf measures 2.892651081085205 seconds
+time to compute net measures 3.697079658508301 seconds
+time to compute ra_s 3.7195699214935303 seconds
+time to compute ra_w 0.7203025817871094 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 68.035s
+
+OK
+
+
+With numba.parallel trial 1
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCExp.py"
+L-CExp
+time to solve 4.2966344356536865 seconds
+time to gen ensemble 27.907673358917236 seconds
+time to compute cf measures 10.598116874694824 seconds
+time to compute net measures 11.8698570728302 seconds
+time to compute ra_s 7.978180646896362 seconds
+time to compute ra_w 1.360884428024292 seconds
+.time to solve 0.9406638145446777 seconds
+time to gen ensemble 21.01955556869507 seconds
+time to compute cf measures 2.9969146251678467 seconds
+time to compute net measures 3.6980509757995605 seconds
+time to compute ra_s 3.3550496101379395 seconds
+time to compute ra_w 0.7872958183288574 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 97.109s
+
+OK
+
+(Test with RA_w)
+L-CExp
+time to solve 4.808825969696045 seconds
+time to gen ensemble 12.04983115196228 seconds
+time to compute cf measures 23.03463912010193 seconds
+time to compute net measures 60.55105543136597 seconds
+time to compute ra_s 35.66840720176697 seconds
+directed RA_w: [0.92277966]
+time to compute ra_w 8.225422620773315 seconds
+.time to solve 1.6975908279418945 seconds
+time to gen ensemble 7.835316896438599 seconds
+time to compute cf measures 3.1343390941619873 seconds
+time to compute net measures 28.75088143348694 seconds
+time to compute ra_s 28.151068925857544 seconds
+undirected RA_w: [0.92325844]
+time to compute ra_w 6.868138790130615 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 221.948s
+
+OK
+
+(test with RA_s and RA_w without parallel)
+python -u "c:\Users\marry\OneDrive\Desktop\Projects\Try_DyGyS\cartella_per_github\tests\test_LCExp.py"
+L-CExp
+time to solve 3.2829055786132812 seconds
+time to gen ensemble 88.36689496040344 seconds
+time to compute cf measures 16.064343214035034 seconds
+time to compute net measures 45.81274652481079 seconds
+directed RA_s: [0.36842105 0.42690058 0.42690058 0.64912281 0.33333333 0.52046784
+ 0.98830409 0.56140351]
+time to compute ra_s 28.963916301727295 seconds
+directed RA_w: [0.95239561]
+time to compute ra_w 6.234494924545288 seconds
+.time to solve 1.1584525108337402 seconds
+time to gen ensemble 83.1347143650055 seconds
+time to compute cf measures 2.8629586696624756 seconds
+time to compute net measures 25.45220637321472 seconds
+undirected RA_s: [0.47368421 0.49122807 0.43274854 0.48538012 1.         0.71345029]
+time to compute ra_s 23.71162486076355 seconds
+undirected RA_w: [0.94740262]
+time to compute ra_w 5.654598712921143 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 331.509s
+
+OK
+
+(test with RA_s and RA_w but with parallel)
+L-CExp
+time to solve 3.348684310913086 seconds
+time to gen ensemble 8.586584329605103 seconds
+time to compute cf measures 15.488439559936523 seconds
+time to compute net measures 48.28256011009216 seconds
+directed RA_s: [0.36842105 0.43274854 0.43274854 0.64912281 0.34502924 0.5380117
+ 0.98245614 0.56725146]
+time to compute ra_s 32.45910954475403 seconds
+directed RA_w: [0.92291645]
+time to compute ra_w 6.080952167510986 seconds
+.time to solve 1.156973123550415 seconds
+time to gen ensemble 5.6200995445251465 seconds
+time to compute cf measures 2.7684948444366455 seconds
+time to compute net measures 26.485414266586304 seconds
+undirected RA_s: [0.47368421 0.47953216 0.43274854 0.50877193 1.         0.70760234]
+time to compute ra_s 25.791168928146362 seconds
+undirected RA_w: [0.92387401]
+time to compute ra_w 5.731019496917725 seconds
+.
+----------------------------------------------------------------------
+Ran 2 tests in 182.767s
+
+OK
