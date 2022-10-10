@@ -218,6 +218,6 @@ It was developed at [IMT School for Advanced Studies Lucca](https://www.imtlucca
 References
 -------
 
-[1] M Di Vece, D Garlaschelli and T Squartini, *Gravity models of networks: Integrating maximum-entropy and econometric approaches*, Phys. Rev. Research 4(3) 033105 (2022), https://link.aps.org/doi/10.1103/PhysRevResearch.4.033105
-[2] M Di Vece, D Garlaschelli and T Squartini, *Reconciling econometrics with continuous maximum-entropy models*, arXiv:2210.01179 (2022), https://arxiv.org/abs/2210.01179 
+    - [1] M Di Vece, D Garlaschelli and T Squartini, *Gravity models of networks: Integrating maximum-entropy and econometric approaches*, Phys. Rev. Research 4(3) 033105 (2022), https://link.aps.org/doi/10.1103/PhysRevResearch.4.033105
+    - [2] M Di Vece, D Garlaschelli and T Squartini, *Reconciling econometrics with continuous maximum-entropy models*, arXiv:2210.01179 (2022),                https://arxiv.org/abs/2210.01179 
 
