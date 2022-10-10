@@ -59,19 +59,19 @@ def discrete_ensemble_matrix_undirected(params,Wij,model,exogenous_variables,
 
 
     Args:
-        params (np.ndarray): params after optimization
-        Wij (np.ndarray): weighted adjacency matrix
-        model (string): requested model for discrete-valued weights
-        exogenous_variables (np.ndarray): regressor matrix for the weighted gravity specification 
-        selection_variables (np.ndarray, optional): topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
-        fixed_selection_params (np.ndarray, optional): fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
+        :params (np.ndarray): params after optimization
+        :Wij (np.ndarray): weighted adjacency matrix
+        :model (string): requested model for discrete-valued weights
+        :exogenous_variables (np.ndarray): regressor matrix for the weighted gravity specification 
+        :selection_variables (np.ndarray, optional): topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
+        :fixed_selection_params (np.ndarray, optional): fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
+        :n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
 
     Raises:
         TypeError: If model is not a discrete count data model or is not implemented.
 
     Returns:
-        w_mat_ensemble (np.ndarray): Weighted adjacency matrices in the ensemble. Each column refers to each graph.
+        :w_mat_ensemble (np.ndarray): Weighted adjacency matrices in the ensemble. Each column refers to each graph.
     """
     
     n_obs = exogenous_variables.shape[0]
@@ -246,16 +246,16 @@ def faster_ensemble_matrix_undirected(params,Wij,model,exogenous_variables,
     """Generate ensemble of graphs for undirected networks with continuous-valued weights
 
     Args:
-        params (np.ndarray): params after optimization
-        Wij (np.ndarray): weighted adjacency matrix
-        model (string): requested model for discrete-valued weights
-        exogenous_variables (np.ndarray): regressor matrix for the weighted gravity specification 
-        selection_variables (np.ndarray, optional): topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
-        fixed_selection_params (np.ndarray, optional): fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
+        :params (np.ndarray): params after optimization
+        :Wij (np.ndarray): weighted adjacency matrix
+        :model (string): requested model for discrete-valued weights
+        :exogenous_variables (np.ndarray): regressor matrix for the weighted gravity specification 
+        :selection_variables (np.ndarray, optional): topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
+        :fixed_selection_params (np.ndarray, optional): fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
+        :n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
 
     Returns:
-        w_mat_ensemble (np.ndarray): Weighted adjacency matrices in the ensemble. Each column refers to each graph.
+        :w_mat_ensemble (np.ndarray): Weighted adjacency matrices in the ensemble. Each column refers to each graph.
     """
     
     implemented_models = ["L-IExp","k-IExp","k-CExp","L-CExp","L-CPareto","k-CPareto","L-CGamma","k-CGamma","L-CLognormal","k-CLognormal"]
@@ -549,19 +549,19 @@ def discrete_ensemble_matrix_directed(params,Wij,model,exogenous_variables,
     """Generate ensemble of graphs for directed networks with discrete-valued weights
 
     Args:
-        params (np.ndarray): params after optimization
-        Wij (np.ndarray): weighted adjacency matrix
-        model (string): requested model for discrete-valued weights
-        exogenous_variables (np.ndarray): regressor matrix for the weighted gravity specification 
-        selection_variables (np.ndarray, optional): topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
-        fixed_selection_params (np.ndarray, optional): fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
+        :params (np.ndarray): params after optimization
+        :Wij (np.ndarray): weighted adjacency matrix
+        :model (string): requested model for discrete-valued weights
+        :exogenous_variables (np.ndarray): regressor matrix for the weighted gravity specification 
+        :selection_variables (np.ndarray, optional): topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
+        :fixed_selection_params (np.ndarray, optional): fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
+        :n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
 
     Raises:
         TypeError: If model is not a discrete count data model or is not implemented.
 
     Returns:
-        w_mat_ensemble (np.ndarray): Weighted adjacency matrices in the ensemble. Each column refers to each graph.
+        :w_mat_ensemble (np.ndarray): Weighted adjacency matrices in the ensemble. Each column refers to each graph.
     """
     n_obs = exogenous_variables.shape[0]
     n_countries = int(np.sqrt(n_obs))
@@ -748,19 +748,19 @@ def faster_ensemble_matrix_directed(params,Wij,model,exogenous_variables,
     """Generate ensemble of graphs for directed networks with continuous-valued weights
 
     Args:
-        params (np.ndarray): params after optimization
-        Wij (np.ndarray): weighted adjacency matrix
-        model (string): requested model for discrete-valued weights
-        exogenous_variables (np.ndarray): regressor matrix for the weighted gravity specification 
-        selection_variables (np.ndarray, optional): topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
-        fixed_selection_params (np.ndarray, optional): fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
+        :params (np.ndarray): params after optimization
+        :Wij (np.ndarray): weighted adjacency matrix
+        :model (string): requested model for discrete-valued weights
+        :exogenous_variables (np.ndarray): regressor matrix for the weighted gravity specification 
+        :selection_variables (np.ndarray, optional): topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
+        :fixed_selection_params (np.ndarray, optional): fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
+        :n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
 
     Raises:
         TypeError: If model is not a continuous model or is not implemented.
 
     Returns:
-        w_mat_ensemble (np.ndarray): Weighted adjacency matrices in the ensemble. Each column refers to each graph.
+        :w_mat_ensemble (np.ndarray): Weighted adjacency matrices in the ensemble. Each column refers to each graph.
     """
     n_obs = exogenous_variables.shape[0]
     n_countries = int(np.sqrt(n_obs))
