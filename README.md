@@ -213,4 +213,4 @@ You can find the complete documentation of the DyGyS library in [documentation](
 *Acknowledgments*:
 The module was developed under the supervision of [Diego Garlaschelli](https://www.imtlucca.it/en/diego.garlaschelli) and [Tiziano Squartini](https://www.imtlucca.it/en/tiziano.squartini).
 It was developed at [IMT School for Advanced Studies Lucca](https://www.imtlucca.it/en) and
-supported by the Italian ‘Programma di Attivit`a Integrata’ (PAI) project ‘Prosociality, Cognition and Peer Effects’ (Pro.Co.P.E.), funded by IMT School for Advanced Studies.
+supported by the Italian ‘Programma di Attività Integrata’ (PAI) project ‘Prosociality, Cognition and Peer Effects’ (Pro.Co.P.E.), funded by IMT School for Advanced Studies.
