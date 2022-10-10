@@ -108,7 +108,7 @@ They can be easily installed via pip typing
 How-to Guidelines
 ------------
 The module containes two classes, namely UndirectedGraph and DirectedGraph.
-An Undirected Graph is defined as a network where weights are reciprocal, i.e., $$w_{ij} = w_{ji}$$ where $$w_{ij}$$ is the network weight from node $$i$$ to node $$j$$. 
+An Undirected Graph is defined as a network where weights are reciprocal, i.e., $w_{ij} = w_{ji}$ where $w_{ij}$ is the network weight from node $i$ to node $j$. 
 If weights are not reciprocal, please use the DirectedGraph class.
 
 Class Instance and Empirical Network Statistics
