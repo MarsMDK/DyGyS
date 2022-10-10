@@ -50,21 +50,6 @@ and
     }
 
 
-Contents
------------------
-
-- DyGyS: DYadic GravitY regression models with Soft constraints
-  - Contents
-  - Currently Available Models
-  - Installation
-  - Dependencies
-  - How-to Guidelines
-   - Class Instance and Empirical Network Statistics
-   - Solving the models
-   - Generating the network ensemble
-   - Computing relevant measures
-   - Credits
-
 Currently Available Models
 --------------------------
 
