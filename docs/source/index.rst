@@ -194,7 +194,7 @@ Finally, you can compute the reproduction accuracy for the weights (introduced i
 This method needs the previous computation of G.w_ensemble_matrix.
 It computes the fraction of empirical weights which fall inside the percentile CI interval given by the inf_p-percentile  and sup_p-percentile, extracted from the graph ensemble and it returns as the attribute 
 ::
-    G.RA_w.
+    G.RA_w
 
 
 Credits
