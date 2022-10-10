@@ -155,7 +155,7 @@ The graphs are produced using the "default_rng" method for discrete-valued model
 This method returns
 ::
     G.w_ensemble_matrix
-which is a $N_{obs} x N_{ensemble}$ matrix which includes all of the $N_{ensemble}$ adjacency matrices in the ensemble.
+which is a $N_{obs} \times N_{ensemble}$ matrix which includes all of the $N_{ensemble}$ adjacency matrices in the ensemble.
 Such method behaves well for networks up to $ N=200 $ for $10^{4}$ ensemble graphs, no test has been done for large networks where G.w_ensemble_matrix could be limited by RAM.
 
 
