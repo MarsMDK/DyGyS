@@ -88,7 +88,7 @@ If you already installed the package and want to  upgrade it,
 you can type from your terminal:
 
 ::
-    $ pip install DyGyS --upgrade
+        $ pip install DyGyS --upgrade
 
 Dependencies
 ---------------------
