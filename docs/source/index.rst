@@ -9,6 +9,7 @@ The use of soft constraints enable the user to explicitly constrain network prop
 
 
 Furthermore it is not only possible to solve the model and extract the parameters, but also to generate the ensemble, compute a number of network statistics, compute model selection measures such as AIC and BIC, and quantify the reproduction accuracy of:
+
     - Topology using measures as True Positive Rate, Specificity, Precision, Accuracy, Balanced Accuracy and F1score;
     - Weights, measuring the fraction of weights inside the percentile CI extracted from the ensemble of graphs;
     - Network Statistics, measuring the fraction of nodes for which the network statistics are inside the wanted percentile CI extracted from the ensemble of graphs.
@@ -59,6 +60,7 @@ The available models for discrete count data are described in [1] and consist of
     - **k-IGeom** *k-constrained Integrated Geometric Model*, noted as H(2) in the paper.
 
 The analogue models for continuous-valued data are described in [2] and consist of:
+
     - **L-CExp** *L-constrained Conditional Exponential Model*, the L-constrained variant of C-Exp in the paper.
     - **k-CExp** *k-constrained Conditional Exponential Model*, noted as CExp in the paper.
     - **L-IExp** *L-constrained Integrated Exponential Model*, the L-constrained variant of I-Exp in the paper.
@@ -87,6 +89,7 @@ you can type from your terminal:
 Dependencies
 ---------------------
 DyGyS uses the following dependencies:
+
     - **scipy** for optimization and root solving;
     - **numba** for fast computation of network statistics and criterion functions.
     - **numba-scipy** for fast computation of special functions such as gammaincinv and erfinv.
