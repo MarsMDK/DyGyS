@@ -183,7 +183,6 @@ class UndirectedGraph:
         print_steps = np.inf,
         imported_params = np.array([]),
         use_guess = np.array([]),
-        bounds = (-np.inf,np.inf),
         maxiter = 10,
         tol = 1e-5,
     ):
@@ -332,7 +331,7 @@ class UndirectedGraph:
             if model[:3] == "L-C":
                 if len(imported_params) ==0:
                     solution = sF.solver(model=self.model,Wij=self.adjacency,selection_variables=self.selection_variables,exogenous_variables=self.exogenous_variables,
-                                         fixed_selection_params=self.fixed_selection_params,bounds=bounds,tol=tol,use_guess= use_guess, 
+                                         fixed_selection_params=self.fixed_selection_params,tol=tol,use_guess= use_guess, 
                                          verbose=verbose, print_steps= print_steps, maxiter=maxiter )
                     self.params = solution
                 else:
@@ -359,7 +358,7 @@ class UndirectedGraph:
                     self.input_model = self.input_model + "_undirected"
                     
                     solution = sF.solver(model=self.input_model,Wij=self.adjacency,selection_variables=self.selection_variables,exogenous_variables=self.exogenous_variables,
-                                         fixed_selection_params=self.fixed_selection_params,bounds=bounds,tol=tol,use_guess= use_guess, 
+                                         fixed_selection_params=self.fixed_selection_params,tol=tol,use_guess= use_guess, 
                                          verbose=verbose, print_steps= print_steps, maxiter=maxiter )
                     self.params = solution
                 else:
@@ -386,7 +385,7 @@ class UndirectedGraph:
                 if self.input_model in ["k-IExp","k-IGeom"]:
                     self.input_model = self.input_model + "_undirected"
                 solution = sF.solver(model=self.input_model,Wij=self.adjacency,selection_variables=self.selection_variables,exogenous_variables=self.exogenous_variables,
-                                         fixed_selection_params=self.fixed_selection_params,bounds=bounds,tol=tol,use_guess= use_guess, 
+                                         fixed_selection_params=self.fixed_selection_params,tol=tol,use_guess= use_guess, 
                                          verbose=verbose, print_steps= print_steps, maxiter=maxiter )
                 self.params = solution
             else:
