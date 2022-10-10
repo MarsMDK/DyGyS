@@ -59,11 +59,11 @@ Contents
   - Installation
   - Dependencies
   - How-to Guidelines
-    - Class Instance and Empirical Network Statistics
-    - Solving the models
-    - Generating the network ensemble
-    - Computing relevant measures
- - Credits
+   - Class Instance and Empirical Network Statistics
+   - Solving the models
+   - Generating the network ensemble
+   - Computing relevant measures
+   - Credits
 
 Currently Available Models
 --------------------------
