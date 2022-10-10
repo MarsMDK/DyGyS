@@ -87,9 +87,9 @@ you can type from your terminal:
 Dependencies
 ---------------------
 DyGyS uses the following dependencies:
-- **scipy** for optimization and root solving;
-- **numba** for fast computation of network statistics and criterion functions.
-- **numba-scipy** for fast computation of special functions such as gammaincinv and erfinv.
+    - **scipy** for optimization and root solving;
+    - **numba** for fast computation of network statistics and criterion functions.
+    - **numba-scipy** for fast computation of special functions such as gammaincinv and erfinv.
 
 They can be easily installed via pip typing
 ::
