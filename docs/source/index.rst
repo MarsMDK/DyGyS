@@ -203,6 +203,17 @@ It computes the fraction of empirical weights which fall inside the percentile C
 ::
     G.RA_w
 
+Guide
+^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   install
+   DyGyS
+   license
+   contacts
 
 Credits
 -----
