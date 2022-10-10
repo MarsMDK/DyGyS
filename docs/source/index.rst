@@ -109,12 +109,12 @@ Class Instance and Empirical Network Statistics
 To inizialize an UndirectedGraph or DirectedGraph instance you can type:
 
 ::    
-    G = UndirectedGraph(adjacency=Wij)
+     G = UndirectedGraph(adjacency=Wij)
 
 or
 
 ::  
-    G = DirectedGraph(adjacency=Wij)
+     G = DirectedGraph(adjacency=Wij)
 where Wij is the weighted adjacency matrix in 1-D (dense) or 2-D numpy array format.
 
 After initializing you can already explore core network statistics such as (out-)degree, in-degree, average neighbor degree, binary clustering coefficient, (out-)strength, in-strength, average neighbor strength and weighted clustering coefficient.
