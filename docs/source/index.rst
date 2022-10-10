@@ -159,7 +159,7 @@ This method returns
 ::
     G.w_ensemble_matrix
 which is a $(N_{obs},N_{ensemble})$ matrix which includes all of the $N_{ensemble}$ adjacency matrices in the ensemble.
-Such method behaves well for networks up to $ N=200 $ for $10^{4}$ ensemble graphs, no test has been done for large networks where G.w_ensemble_matrix could be limited by RAM.
+Such method behaves well for networks up to $N=200$ for $10^{4}$ ensemble graphs, no test has been done for large networks where G.w_ensemble_matrix could be limited by RAM.
 
 
 Computing relevant measures
