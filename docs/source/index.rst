@@ -4,7 +4,7 @@ DyGyS: DYadic GravitY regression models with Soft constraints
 
 DyGyS is a package developed on python3 for Maximum Entropy regression models with gravity specification for undirected and directed network data.
 
-DyGyS provides a numerous amount of models, described in their undirected declination in articles [1](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105) and [2](https://arxiv.org/abs/2210.01179) and consisting of both econometric and statistical physics-inspired models.
+DyGyS provides a numerous amount of models, described in their undirected declination in articles [1](https://doi.org/10.1103/PhysRevResearch.4.033105) and [2](https://arxiv.org/abs/2210.01179) and consisting of both econometric and statistical physics-inspired models.
 The use of soft constraints enable the user to explicitly constrain network properties such as the number of links, the degree sequence (degree centrality for Undirected Networks and out-degree/in-degree centralities for directed networks), and the total weight (for a small number of viable models).
 
 Furthermore it is not only possible to solve the model and extract the parameters, but also to generate the ensemble, compute a number of network statistics, compute model selection measures such as AIC and BIC, and quantify the reproduction accuracy of:
@@ -46,7 +46,7 @@ Currently Available Models
 --------------------------
 
 DyGyS contains models for network data with both continuous and discrete-valued semi-definite positive weights.
-The available models for discrete count data are described in [1](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and consist of:
+The available models for discrete count data are described in [1](https://doi.org/10.1103/PhysRevResearch.4.033105) and consist of:
 
     - **POIS** *Poisson Model* 
     - **ZIP** *Zero-Inflated Poisson Model* 
@@ -57,7 +57,7 @@ The available models for discrete count data are described in [1](https://journa
     - **L-IGeom** *L-constrained Integrated Geometric Model*, noted as H(1) in the paper.
     - **k-IGeom** *k-constrained Integrated Geometric Model*, noted as H(2) in the paper.
 
-The analogue models for continuous-valued data are described in [2](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and consist of:
+The analogue models for continuous-valued data are described in [2](https://arxiv.org/abs/2210.01179) and consist of:
     - **L-CExp** *L-constrained Conditional Exponential Model*, the L-constrained variant of C-Exp in the paper.
     - **k-CExp** *k-constrained Conditional Exponential Model*, noted as CExp in the paper.
     - **L-IExp** *L-constrained Integrated Exponential Model*, the L-constrained variant of I-Exp in the paper.
