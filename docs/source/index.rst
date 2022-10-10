@@ -7,6 +7,7 @@ DyGyS is a package developed on python3 for Maximum Entropy regression models wi
 DyGyS provides a numerous amount of models, described in their undirected declination in articles [1] and [2] and consisting of both econometric and statistical physics-inspired models.
 The use of soft constraints enable the user to explicitly constrain network properties such as the number of links, the degree sequence (degree centrality for Undirected Networks and out-degree/in-degree centralities for directed networks), and the total weight (for a small number of viable models).
 
+
 Furthermore it is not only possible to solve the model and extract the parameters, but also to generate the ensemble, compute a number of network statistics, compute model selection measures such as AIC and BIC, and quantify the reproduction accuracy of:
     - Topology using measures as True Positive Rate, Specificity, Precision, Accuracy, Balanced Accuracy and F1score;
     - Weights, measuring the fraction of weights inside the percentile CI extracted from the ensemble of graphs;
