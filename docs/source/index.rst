@@ -204,7 +204,8 @@ It computes the fraction of empirical weights which fall inside the percentile C
     G.RA_w.
 
 
-## Credits
+Credits
+-----
 
 *Author*:
 
