@@ -55,26 +55,27 @@ Currently Available Models
 
 DyGyS contains models for network data with both continuous and discrete-valued semi-definite positive weights.
 The available models for discrete count data are described in [1](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and consist of:
-- **POIS** *Poisson Model*__ 
-- **ZIP** *Zero-Inflated Poisson Model* __
-- **NB2** *Negative Binomial Model* __
-- **ZINB** *Zero-Inflated Negative Binomial Model* __
-- **L-CGeom** *L-constrained Conditional Geometric Model*, noted as TSF in the paper.<#1>`__
-- **k-CGeom** *k-constrained Conditional Geometric Model*, noted as TS in the paper.<#1>`__
-- **L-IGeom** *L-constrained Integrated Geometric Model*, noted as H(1) in the paper.<#1>`__
-- **k-IGeom** *k-constrained Integrated Geometric Model*, noted as H(2) in the paper.<#1>`__
+
+    - **POIS** *Poisson Model* 
+    - **ZIP** *Zero-Inflated Poisson Model* 
+    - **NB2** *Negative Binomial Model* 
+    - **ZINB** *Zero-Inflated Negative Binomial Model* 
+    - **L-CGeom** *L-constrained Conditional Geometric Model*, noted as TSF in the paper.
+    - **k-CGeom** *k-constrained Conditional Geometric Model*, noted as TS in the paper.
+    - **L-IGeom** *L-constrained Integrated Geometric Model*, noted as H(1) in the paper.
+    - **k-IGeom** *k-constrained Integrated Geometric Model*, noted as H(2) in the paper.
 
 The analogue models for continuous-valued data are described in [2](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and consist of:
-- **L-CExp** *L-constrained Conditional Exponential Model*, the L-constrained variant of C-Exp in the paper.
-- **k-CExp** *k-constrained Conditional Exponential Model*, noted as CExp in the paper.
-- **L-IExp** *L-constrained Integrated Exponential Model*, the L-constrained variant of I-Exp in the paper.
-- **k-IExp** *k-constrained Integrated Exponential Model*, noted as IExp in the paper.
-- **L-CGamma** *L-constrained Conditional Gamma Model*, the L-constrained variant of C-Gamma in the paper.
-- **k-CGamma** *k-constrained Conditional Gamma Model*, noted as CGamma in the paper.
-- **L-CPareto** *L-constrained Conditional Pareto Model*, the L-constrained variant of C-Pareto in the paper.
-- **k-CPareto** *k-constrained Conditional Pareto Model*, noted as CPareto in the paper.
-- **L-CLognormal** *L-constrained Conditional Lognormal Model*, the L-constrained variant of C-Lognormal in the paper.
-- **k-CLognormal** *k-constrained Conditional Lognormal Model*, noted as CLognormal in the paper.
+    - **L-CExp** *L-constrained Conditional Exponential Model*, the L-constrained variant of C-Exp in the paper.
+    - **k-CExp** *k-constrained Conditional Exponential Model*, noted as CExp in the paper.
+    - **L-IExp** *L-constrained Integrated Exponential Model*, the L-constrained variant of I-Exp in the paper.
+    - **k-IExp** *k-constrained Integrated Exponential Model*, noted as IExp in the paper.
+    - **L-CGamma** *L-constrained Conditional Gamma Model*, the L-constrained variant of C-Gamma in the paper.
+    - **k-CGamma** *k-constrained Conditional Gamma Model*, noted as CGamma in the paper.
+    - **L-CPareto** *L-constrained Conditional Pareto Model*, the L-constrained variant of C-Pareto in the paper.
+    - **k-CPareto** *k-constrained Conditional Pareto Model*, noted as CPareto in the paper.
+    - **L-CLognormal** *L-constrained Conditional Lognormal Model*, the L-constrained variant of C-Lognormal in the paper.
+    - **k-CLognormal** *k-constrained Conditional Lognormal Model*, noted as CLognormal in the paper.
 
 Please refer to the papers for further details.
 
