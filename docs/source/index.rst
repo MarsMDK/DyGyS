@@ -15,7 +15,7 @@ Furthermore it is not only possible to solve the model and extract the parameter
 To explore Maximum-Entropy modeling on networks, checkout [Maximum Entropy Hub](https://meh.imtlucca.it/).
 
 When using the module for your scientific research please consider citing:
-```
+::
     @article{PhysRevResearch.4.033105,
       title = {Gravity models of networks: Integrating maximum-entropy and econometric approaches},
       author = {Di Vece, Marzio and Garlaschelli, Diego and Squartini, Tiziano},
@@ -31,9 +31,9 @@ When using the module for your scientific research please consider citing:
       url = {https://link.aps.org/doi/10.1103/PhysRevResearch.4.033105}
     }
 
-```
+
 and
-```
+::
     @article{PhysRevResearch.4.033105,
       title = {Gravity models of networks: Integrating maximum-entropy and econometric approaches},
       author = {Di Vece, Marzio and Garlaschelli, Diego and Squartini, Tiziano},
@@ -49,7 +49,7 @@ and
       url = {https://link.aps.org/doi/10.1103/PhysRevResearch.4.033105}
     }
 
-```
+
 Contents
 -----------------
 
@@ -126,7 +126,9 @@ The module containes two classes, namely UndirectedGraph and DirectedGraph.
 An Undirected Graph is defined as a network where weights are reciprocal, i.e., $$w_{ij} = w_{ji}$$ where $$w_{ij}$$ is the network weight from node $$i$$ to node $$j$$. 
 If weights are not reciprocal, please use the DirectedGraph class.
 
-### Class Instance and Empirical Network Statistics
+Class Instance and Empirical Network Statistics
+-----------
+
 To inizialize an UndirectedGraph or DirectedGraph instance you can type:
 
 ::
