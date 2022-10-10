@@ -1,6 +1,6 @@
 
 DyGyS: DYadic GravitY regression models with Soft constraints
-=====================================
+==============================================================
 
 DyGyS is a package developed on python3 for Maximum Entropy regression models with gravity specification for undirected and directed network data.
 
@@ -45,7 +45,7 @@ and
 
 
 Currently Available Models
---------------------------
+====================================
 
 DyGyS contains models for network data with both continuous and discrete-valued semi-definite positive weights.
 The available models for discrete count data are described in [1] and consist of:
@@ -75,7 +75,8 @@ The analogue models for continuous-valued data are described in [2] and consist 
 Please refer to the papers for further details.
 
 Installation
-------------
+==============================
+
 DyGyS can be installed via pip. You can do it from your terminal
 ::
     $ pip install DyGyS
@@ -88,6 +89,7 @@ you can type from your terminal:
 
 Dependencies
 ---------------------
+
 DyGyS uses the following dependencies:
 
     - **scipy** for optimization and root solving;
@@ -102,13 +104,15 @@ They can be easily installed via pip typing
 
 
 How-to Guidelines
-------------
+===============================
+
 The module containes two classes, namely UndirectedGraph and DirectedGraph.
 An Undirected Graph is defined as a network where weights are reciprocal, i.e., $w_{ij} = w_{ji}$ where $w_{ij}$ is the network weight from node $i$ to node $j$. 
 If weights are not reciprocal, please use the DirectedGraph class.
 
 Class Instance and Empirical Network Statistics
------------
+---------------------------------------------------
+
 
 To inizialize an UndirectedGraph or DirectedGraph instance you can type:
 
@@ -153,7 +157,8 @@ For further details on the .solve functions please see the documentation.
 
 
 Generating the network ensemble 
-----------------
+-------------------------------------
+
 Generating the network ensemble is very easy. It's enough to type:
 ::    
     G.gen_ensemble(n_ensemble=<wanted number of graphs>)
@@ -167,7 +172,7 @@ Such method behaves well for networks up to $N=200$ for $10^{4}$ ensemble graphs
 
 
 Computing relevant measures
-----------------
+---------------------------------
 Let's start by showing how to compute topology-related measures. 
 You can type:
 ::    
@@ -219,7 +224,7 @@ Guide
    contacts
 
 Credits
------
+=========================
 
 *Author*:
 
@@ -231,7 +236,7 @@ It was developed at [IMT School for Advanced Studies Lucca](https://www.imtlucca
 
 
 References
--------
+=====================
 
     - [1] M Di Vece, D Garlaschelli and T Squartini, *Gravity models of networks: Integrating maximum-entropy and econometric approaches*, Phys. Rev. Research 4(3) 033105 (2022), https://link.aps.org/doi/10.1103/PhysRevResearch.4.033105
     - [2] M Di Vece, D Garlaschelli and T Squartini, *Reconciling econometrics with continuous maximum-entropy models*, arXiv:2210.01179 (2022),                https://arxiv.org/abs/2210.01179 
