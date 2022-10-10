@@ -55,14 +55,14 @@ Currently Available Models
 
 DyGyS contains models for network data with both continuous and discrete-valued semi-definite positive weights.
 The available models for discrete count data are described in [1](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and consist of:
-- **POIS** *Poisson Model* 
-- **ZIP** *Zero-Inflated Poisson Model* 
-- **NB2** *Negative Binomial Model* 
-- **ZINB** *Zero-Inflated Negative Binomial Model* 
-- **L-CGeom** *L-constrained Conditional Geometric Model*, noted as TSF in the paper.
-- **k-CGeom** *k-constrained Conditional Geometric Model*, noted as TS in the paper.
-- **L-IGeom** *L-constrained Integrated Geometric Model*, noted as H(1) in the paper.
-- **k-IGeom** *k-constrained Integrated Geometric Model*, noted as H(2) in the paper.
+- **POIS** *Poisson Model*__ 
+- **ZIP** *Zero-Inflated Poisson Model* __
+- **NB2** *Negative Binomial Model* __
+- **ZINB** *Zero-Inflated Negative Binomial Model* __
+- **L-CGeom** *L-constrained Conditional Geometric Model*, noted as TSF in the paper. __
+- **k-CGeom** *k-constrained Conditional Geometric Model*, noted as TS in the paper. __
+- **L-IGeom** *L-constrained Integrated Geometric Model*, noted as H(1) in the paper. __
+- **k-IGeom** *k-constrained Integrated Geometric Model*, noted as H(2) in the paper. __
 
 The analogue models for continuous-valued data are described in [2](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and consist of:
 - **L-CExp** *L-constrained Conditional Exponential Model*, the L-constrained variant of C-Exp in the paper.
