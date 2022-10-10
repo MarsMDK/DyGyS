@@ -20,24 +20,33 @@ def binarize(input):
 def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_params=np.array([]),tol=1e-5,
            use_guess= np.array([]), verbose=False, print_steps= 1, maxiter=20 ):  
     """Solves chosen model using scipy.optimize and scipy.least_squares routines.
+    
+    :param model: chosen model
+    :type model: str
+    :param Wij:  weighted adjacency matrix
+    :type Wij: np,ndarray
+    :param selection_variables: regressor matrix for the topological optimization of Zero-Inflated and L-constrained Conditional Models.
+    :param exogenous_variables: regressor matrix for the weighted optimization
+    :param fixed_selection_variables: fixed parameters for the topological optimization of Zero-Inflated and L-constrained Conditional Models. Defaults to np.array([1.00000,1.0000,0.0000]).
+    :param tol: tolerance for optimization. Defaults to 1e-5.
+    :param use_guess: optional starter guess for the optimization process. Defaults to np.array([]).
+    :param verbose: True if you want to print iteration values of infinite norm. Defaults to False.
+    :param print_steps: If verbose is True, you decide after how many steps you print on the screen. Defaults to 1.
+    :param maxiter: Maxiter for optimization process. Defaults to 10.
+    
+    :type selection_variables: np.ndarray
+    :type exogenous_variables: np.ndarray
+    :type fixed_selection_variables: np.ndarray
+    :type tol: float, optional
+    :type use_guess: np.ndarray, optional
+    :type verbose: bool, optional
+    :type print_steps: int, optional
+    :type maxiter: int, optional
+    
+    :raise TypeError: If chosen model is not correctly written or not implemented. See self.implemented_models to see available models.
 
-    Args:
-        model (string): chosen model
-        Wij (np.ndarray): weighted adjacency matrix
-        selection_variables (np.ndarray): regressor matrix for the topological optimization of Zero-Inflated and L-constrained Conditional Models.
-        exogenous_variables (np.ndarray): regressor matrix for the weighted optimization
-        fixed_selection_params (np.ndarray, optional): fixed parameters for the topological optimization of Zero-Inflated and L-constrained Conditional Models. Defaults to np.array([1.00000,1.0000,0.0000]).
-        tol (np.float64, optional): tolerance for optimization. Defaults to 1e-5.
-        use_guess (np.ndarray, optional): optional starter guess for the optimization process. Defaults to np.array([]).
-        verbose (bool, optional): True if you want to print iteration values of infinite norm. Defaults to False.
-        print_steps (int, optional): If verbose is True, you decide after how many steps you print on the screen. Defaults to 1.
-        maxiter (int, optional): Maxiter for optimization process. Defaults to 10.
-
-    Raises:
-        TypeError: If chosen model is not correctly written or not implemented. See self.implemented_models to see available models.
-
-    Returns:
-        sol (np.ndarray): estimated model solution.
+    :return sol: estimated model solution
+    :rtype sol: np.ndarray
     """
     
     if model == "Logit":
