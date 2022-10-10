@@ -255,18 +255,28 @@ def clust_w_single_fast(w_adj,adj):
 def pij_matrix_undirected(params,method,Wij,selection_variables = np.array([]),exogenous_variables = np.array([]),
                             fixed_selection_params = np.array([])):
     """Computes expected binary adjacency matrix according to model of choice for Undirected networks.
-
-    Args:
-        params (np.ndarray): optimized parameters
-        method (string): chosen model
-        Wij (np.ndarray): weighted adjacency matrix
-        selection_variables (np.ndarray, optional): regressor matrix for topological step. Defaults to np.array([]).
-        exogenous_variables (np.ndarray, optional): regressor matrix for weighted step. Defaults to np.array([]).
-        fixed_selection_params (np.ndarray, optional): fixed parameters for topological step. Defaults to np.array([]).
-
-    Returns:
-        top_mat (np.ndarray): topological expected matrix in 1-D form
+    
+    :param params: params after optimization
+    :type params: np.ndarray
+    :param Wij: weighted adjacency matrix
+    :type Wij: np.ndarray
+    :param model: requested model for discrete-valued weights
+    :type model: str
+    :param exogenous_variables: regressor matrix for the weighted gravity specification 
+    :type exogenous_variables: np.ndarray
+    :param selection_variables: topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
+    :type selection_variables: np.ndarray, optional
+    :param fixed_selection_params: fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
+    :type fixed_selection_params: np.ndarray, optional
+    :param n_ensemble: Number of graphs in the ensemble. Defaults to 1000.
+    :type n_ensemble: int, optional
+    
+    
+    :return top_mat: topological expected matrix in 1-D form
+    :rtype top_mat: np.ndarray
     """
+    
+    
     top_mat = np.zeros(len(Wij))
     n_countries = int(np.sqrt(len(Wij)))
     L_conditionals = ["Logit","L-CGeom","L-CExp","L-CPareto","L-CGamma","L-CLognormal"]
@@ -476,17 +486,26 @@ def pij_matrix_undirected(params,method,Wij,selection_variables = np.array([]),e
 def pij_matrix_directed(params,method,Wij,selection_variables = np.array([]),exogenous_variables = np.array([]),
                             fixed_selection_params = np.array([])):
     """Computes expected binary adjacency matrix according to model of choice for Directed networks.
-
-    Args:
-        params (np.ndarray): optimized parameters
-        method (string): chosen model
-        Wij (np.ndarray): weighted adjacency matrix
-        selection_variables (np.ndarray, optional): regressor matrix for topological step. Defaults to np.array([]).
-        exogenous_variables (np.ndarray, optional): regressor matrix for weighted step. Defaults to np.array([]).
-        fixed_selection_params (np.ndarray, optional): fixed parameters for topological step. Defaults to np.array([]).
-
-    Returns:
-        top_mat (np.ndarray): topological expected matrix in 1-D form
+    
+    
+    :param params: params after optimization
+    :type params: np.ndarray
+    :param Wij: weighted adjacency matrix
+    :type Wij: np.ndarray
+    :param model: requested model for discrete-valued weights
+    :type model: str
+    :param exogenous_variables: regressor matrix for the weighted gravity specification 
+    :type exogenous_variables: np.ndarray
+    :param selection_variables: topological regressor matrix for zero-inflated and L-C models. Defaults to np.array([]).
+    :type selection_variables: np.ndarray, optional
+    :param fixed_selection_params: fixed parameters for the topological stage for zero-inflated and L-C models. Defaults to np.array([]).
+    :type fixed_selection_params: np.ndarray, optional
+    :param n_ensemble: Number of graphs in the ensemble. Defaults to 1000.
+    :type n_ensemble: int, optional
+    
+    
+    :return top_mat: topological expected matrix in 1-D form
+    :rtype top_mat: np.ndarray
     """
     
     top_mat = np.zeros(len(Wij))
@@ -802,19 +821,18 @@ def F1_score(adj_emp,adj_ens):
 @jit(nopython=True,fastmath=True,parallel=True)
 def TPR_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
     """Computes various statistics for True Positive Rate in the Graph Ensemble.
+    It returns the ensemble average, standard deviation, percentiles and array for TPR.
 
-    Args:
-        pij_mat (np.ndarray): expected binary adjacency matrix
-        aij_emp (np.ndarray): empirical binary adjacency matrix
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
-        percentiles (tuple, optional): Percentiles to compute. Defaults to (2.5,97.5).
-
-    Returns:
-        avg_TPR (np.float64): ensemble average True Positive Rate
-        std_TPR (np.float64): ensemble standard deviation True Positive Rate
-        percentiles_TPR (tuple): percentiles (inf_p,sup_p) extracted from the ensemble distribution
-        array_TPR (np.ndarray): ensemble distribution of True Positive Rate.
-    """
+    :param pij_mat: expected binary adjacency matrix
+    :type pij_mat: np.ndarray
+    :param aij_emp: empirical binary adjacency matrix
+    :type aij_emp: np.ndarray
+    :param n_ensemble: Number of graphs in the ensemble. Defaults to 1000.
+    :type n_ensemble: int, optional
+    :param percentiles: Percentiles to compute. Defaults to (2.5,97.5).
+    :type percentiles: tuple, optional
+    
+   """
     n_countries = int(np.sqrt(len(aij_emp)))
     array_TPR = np.empty(n_ensemble)
     
@@ -840,17 +858,16 @@ def TPR_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
 def SPC_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
     """Computes various statistics for Specificity in the Graph Ensemble.
 
-    Args:
-        pij_mat (np.ndarray): expected binary adjacency matrix
-        aij_emp (np.ndarray): empirical binary adjacency matrix
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
-        percentiles (tuple, optional): Percentiles to compute. Defaults to (2.5,97.5).
+    It returns the ensemble average, standard deviation, percentiles and array for SPC.
 
-    Returns:
-        avg_SPC (np.float64): ensemble average Specificity
-        std_SPC (np.float64): ensemble standard deviation Specificity
-        percentiles_SPC (tuple): percentiles (inf_p,sup_p) extracted from the ensemble distribution
-        array_SPC (np.ndarray): ensemble distribution of Specificity.
+    :param pij_mat: expected binary adjacency matrix
+    :type pij_mat: np.ndarray
+    :param aij_emp: empirical binary adjacency matrix
+    :type aij_emp: np.ndarray
+    :param n_ensemble: Number of graphs in the ensemble. Defaults to 1000.
+    :type n_ensemble: int, optional
+    :param percentiles: Percentiles to compute. Defaults to (2.5,97.5).
+    :type percentiles: tuple, optional
     """
     
     n_countries = int(np.sqrt(len(aij_emp)))
@@ -878,17 +895,16 @@ def SPC_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
 def PPV_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
     """Computes various statistics for Precision in the Graph Ensemble.
 
-    Args:
-        pij_mat (np.ndarray): expected binary adjacency matrix
-        aij_emp (np.ndarray): empirical binary adjacency matrix
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
-        percentiles (tuple, optional): Percentiles to compute. Defaults to (2.5,97.5).
+   It returns the ensemble average, standard deviation, percentiles and array for PPV.
 
-    Returns:
-        avg_PPV (np.float64): ensemble average Precision
-        std_PPV (np.float64): ensemble standard deviation Precision
-        percentiles_PPV (tuple): percentiles (inf_p,sup_p) extracted from the ensemble distribution
-        array_PPV (np.ndarray): ensemble distribution of Precision.
+    :param pij_mat: expected binary adjacency matrix
+    :type pij_mat: np.ndarray
+    :param aij_emp: empirical binary adjacency matrix
+    :type aij_emp: np.ndarray
+    :param n_ensemble: Number of graphs in the ensemble. Defaults to 1000.
+    :type n_ensemble: int, optional
+    :param percentiles: Percentiles to compute. Defaults to (2.5,97.5).
+    :type percentiles: tuple, optional
     """
     
     n_countries = int(np.sqrt(len(aij_emp)))
@@ -916,17 +932,16 @@ def PPV_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
 def ACC_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
     """Computes various statistics for Accuracy in the Graph Ensemble.
 
-    Args:
-        pij_mat (np.ndarray): expected binary adjacency matrix
-        aij_emp (np.ndarray): empirical binary adjacency matrix
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
-        percentiles (tuple, optional): Percentiles to compute. Defaults to (2.5,97.5).
+    It returns the ensemble average, standard deviation, percentiles and array for ACC.
 
-    Returns:
-        avg_ACC (np.float64): ensemble average Accuracy
-        std_ACC (np.float64): ensemble standard deviation Accuracy
-        percentiles_ACC (tuple): percentiles (inf_p,sup_p) extracted from the ensemble distribution
-        array_ACC (np.ndarray): ensemble distribution of Accuracy.
+    :param pij_mat: expected binary adjacency matrix
+    :type pij_mat: np.ndarray
+    :param aij_emp: empirical binary adjacency matrix
+    :type aij_emp: np.ndarray
+    :param n_ensemble: Number of graphs in the ensemble. Defaults to 1000.
+    :type n_ensemble: int, optional
+    :param percentiles: Percentiles to compute. Defaults to (2.5,97.5).
+    :type percentiles: tuple, optional
     """
     
     n_countries = int(np.sqrt(len(aij_emp)))
@@ -954,17 +969,16 @@ def ACC_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
 def BACC_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
     """Computes various statistics for Balanced Accuracy in the Graph Ensemble.
 
-    Args:
-        pij_mat (np.ndarray): expected binary adjacency matrix
-        aij_emp (np.ndarray): empirical binary adjacency matrix
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
-        percentiles (tuple, optional): Percentiles to compute. Defaults to (2.5,97.5).
+    It returns the ensemble average, standard deviation, percentiles and array for BACC.
 
-    Returns:
-        avg_BACC (np.float64): ensemble average Balanced Accuracy
-        std_BACC (np.float64): ensemble standard deviation Balanced Accuracy
-        percentiles_BACC (tuple): percentiles (inf_p,sup_p) extracted from the ensemble distribution
-        array_BACC (np.ndarray): ensemble distribution of Balanced Accuracy.
+    :param pij_mat: expected binary adjacency matrix
+    :type pij_mat: np.ndarray
+    :param aij_emp: empirical binary adjacency matrix
+    :type aij_emp: np.ndarray
+    :param n_ensemble: Number of graphs in the ensemble. Defaults to 1000.
+    :type n_ensemble: int, optional
+    :param percentiles: Percentiles to compute. Defaults to (2.5,97.5).
+    :type percentiles: tuple, optional
     """
     
     n_countries = int(np.sqrt(len(aij_emp)))
@@ -992,17 +1006,16 @@ def BACC_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
 def F1_score_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
     """Computes various statistics for F1 Score in the Graph Ensemble.
 
-    Args:
-        pij_mat (np.ndarray): expected binary adjacency matrix
-        aij_emp (np.ndarray): empirical binary adjacency matrix
-        n_ensemble (int, optional): Number of graphs in the ensemble. Defaults to 1000.
-        percentiles (tuple, optional): Percentiles to compute. Defaults to (2.5,97.5).
+    It returns the ensemble average, standard deviation, percentiles and array for F1score.
 
-    Returns:
-        avg_F1_score (np.float64): ensemble average F1 Score
-        std_F1_score (np.float64): ensemble standard deviation F1 Score
-        percentiles_F1_score (tuple): percentiles (inf_p,sup_p) extracted from the ensemble distribution
-        array_F1_score (np.ndarray): ensemble distribution of F1 Score.
+    :param pij_mat: expected binary adjacency matrix
+    :type pij_mat: np.ndarray
+    :param aij_emp: empirical binary adjacency matrix
+    :type aij_emp: np.ndarray
+    :param n_ensemble: Number of graphs in the ensemble. Defaults to 1000.
+    :type n_ensemble: int, optional
+    :param percentiles: Percentiles to compute. Defaults to (2.5,97.5).
+    :type percentiles: tuple, optional
     """
     
     n_countries = int(np.sqrt(len(aij_emp)))
@@ -1028,17 +1041,14 @@ def F1_score_ensemble(pij_mat,aij_emp,n_ensemble=1000,percentiles=(2.5,97.5)):
 
 @jit(nopython=True,fastmath=True,nogil=False,parallel=True)               
 def degree_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
-    """Computes various statistics for (out-)degree centrality in the Graph Ensemble
+    """Computes various statistics for (out-)degree centrality in the Graph Ensemble, consisting of ensemble average, standard deviation, 
+    percentiles and ensemble distribution.
 
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices for the Graph Ensemble
-        percentiles (tuple, optional): percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
 
-    Returns:
-        avg_stat (np.ndarray): ensemble average of (out-)degree centrality
-        std_stat (np.ndarray): ensemble standard deviation of (out-)degree centrality
-        percentiles_stat (np.ndarray): ensemble percentiles of (out-)degree centrality
-        array_stat (np.ndarray): ensemble distribution of (out-)degree centrality
+    :params w_mat_ensemble: weighted adjacency matrices for the Graph Ensemble
+    :params percentiles: percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
+    :type w_mat_ensemble: np.ndarray
+    :type percentiles: tuple, optional
     """
     n_obs = w_mat_ensemble.shape[0]
     n_ensemble = w_mat_ensemble.shape[1]
@@ -1066,18 +1076,16 @@ def degree_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
 
 @jit(nopython=True,fastmath=True,nogil=False,parallel=True)               
 def degree_in_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
-    """Computes various statistics for in-degree centrality in the Graph Ensemble
+    """Computes various statistics for in-degree centrality in the Graph Ensemble, consisting of ensemble average, standard deviation, 
+    percentiles and ensemble distribution.
 
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices for the Graph Ensemble
-        percentiles (tuple, optional): percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
 
-    Returns:
-        avg_stat (np.ndarray): ensemble average of in-degree centrality
-        std_stat (np.ndarray): ensemble standard deviation of in-degree centrality
-        percentiles_stat (np.ndarray): ensemble percentiles of in-degree centrality
-        array_stat (np.ndarray): ensemble distribution of in-degree centrality
+    :params w_mat_ensemble: weighted adjacency matrices for the Graph Ensemble
+    :params percentiles: percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
+    :type w_mat_ensemble: np.ndarray
+    :type percentiles: tuple, optional
     """
+ 
     
     n_obs = w_mat_ensemble.shape[0]
     n_ensemble = w_mat_ensemble.shape[1]
@@ -1105,17 +1113,14 @@ def degree_in_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
 
 @jit(nopython=True,fastmath=True,nogil=False,parallel=True)               
 def annd_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
-    """Computes various statistics for average neighbor degree centrality in the Graph Ensemble
+    """Computes various statistics for average neighbor degree centrality in the Graph Ensemble, consisting of ensemble average, standard deviation, 
+    percentiles and ensemble distribution.
 
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices for the Graph Ensemble
-        percentiles (tuple, optional): percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
 
-    Returns:
-        avg_stat (np.ndarray): ensemble average of average neighbor degree centrality
-        std_stat (np.ndarray): ensemble standard deviation of average neighbor degree centrality
-        percentiles_stat (np.ndarray): ensemble percentiles of average neighbor degree centrality
-        array_stat (np.ndarray): ensemble distribution of average neighbor degree centrality
+    :params w_mat_ensemble: weighted adjacency matrices for the Graph Ensemble
+    :params percentiles: percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
+    :type w_mat_ensemble: np.ndarray
+    :type percentiles: tuple, optional
     """
     
     n_obs = w_mat_ensemble.shape[0]
@@ -1145,17 +1150,14 @@ def annd_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
 
 @jit(nopython=True,fastmath=True,nogil=False,parallel=True)               
 def clust_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
-    """Computes various statistics for binary clustering coefficient centrality in the Graph Ensemble
+    """Computes various statistics for binary clustering coefficient centrality in the Graph Ensemble, consisting of ensemble average, standard deviation, 
+    percentiles and ensemble distribution.
 
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices for the Graph Ensemble
-        percentiles (tuple, optional): percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
 
-    Returns:
-        avg_stat (np.ndarray): ensemble average of binary clustering coefficient centrality
-        std_stat (np.ndarray): ensemble standard deviation of binary clustering coefficient centrality
-        percentiles_stat (np.ndarray): ensemble percentiles of binary clustering coefficient centrality
-        array_stat (np.ndarray): ensemble distribution of binary clustering coefficient centrality
+    :params w_mat_ensemble: weighted adjacency matrices for the Graph Ensemble
+    :params percentiles: percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
+    :type w_mat_ensemble: np.ndarray
+    :type percentiles: tuple, optional
     """
     
     n_obs = w_mat_ensemble.shape[0]
@@ -1185,17 +1187,14 @@ def clust_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
 
 @jit(nopython=True,fastmath=True,nogil=False,parallel=True)               
 def st_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
-    """Computes various statistics for (out-)strength centrality in the Graph Ensemble
+    """Computes various statistics for (out-)strength centrality in the Graph Ensemble, consisting of ensemble average, standard deviation, 
+    percentiles and ensemble distribution.
 
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices for the Graph Ensemble
-        percentiles (tuple, optional): percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
 
-    Returns:
-        avg_stat (np.ndarray): ensemble average of (out-)strength centrality
-        std_stat (np.ndarray): ensemble standard deviation of (out-)strength centrality
-        percentiles_stat (np.ndarray): ensemble percentiles of (out-)strength centrality
-        array_stat (np.ndarray): ensemble distribution of (out-)strength centrality
+    :params w_mat_ensemble: weighted adjacency matrices for the Graph Ensemble
+    :params percentiles: percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
+    :type w_mat_ensemble: np.ndarray
+    :type percentiles: tuple, optional
     """
     
     n_obs = w_mat_ensemble.shape[0]
@@ -1223,17 +1222,14 @@ def st_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
 
 @jit(nopython=True,fastmath=True,nogil=False,parallel=True)               
 def st_in_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
-    """Computes various statistics for in-strength centrality in the Graph Ensemble
+    """Computes various statistics for in-strength centrality in the Graph Ensemble, consisting of ensemble average, standard deviation, 
+    percentiles and ensemble distribution.
 
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices for the Graph Ensemble
-        percentiles (tuple, optional): percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
 
-    Returns:
-        avg_stat (np.ndarray): ensemble average of in-strength centrality
-        std_stat (np.ndarray): ensemble standard deviation of in-strength centrality
-        percentiles_stat (np.ndarray): ensemble percentiles of in-strength centrality
-        array_stat (np.ndarray): ensemble distribution of in-strength centrality
+    :params w_mat_ensemble: weighted adjacency matrices for the Graph Ensemble
+    :params percentiles: percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
+    :type w_mat_ensemble: np.ndarray
+    :type percentiles: tuple, optional
     """
     
     n_obs = w_mat_ensemble.shape[0]
@@ -1261,17 +1257,14 @@ def st_in_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
 
 @jit(nopython=True,fastmath=True,nogil=False,parallel=True)               
 def anns_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
-    """Computes various statistics for average neighbor strength centrality in the Graph Ensemble
+    """Computes various statistics for average neighbor strength centrality in the Graph Ensemble, consisting of ensemble average, standard deviation, 
+    percentiles and ensemble distribution.
 
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices for the Graph Ensemble
-        percentiles (tuple, optional): percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
 
-    Returns:
-        avg_stat (np.ndarray): ensemble average of average neighbor strength centrality
-        std_stat (np.ndarray): ensemble standard deviation of average neighbor strength centrality
-        percentiles_stat (np.ndarray): ensemble percentiles of average neighbor strength centrality
-        array_stat (np.ndarray): ensemble distribution of average neighbor strength centrality
+    :params w_mat_ensemble: weighted adjacency matrices for the Graph Ensemble
+    :params percentiles: percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
+    :type w_mat_ensemble: np.ndarray
+    :type percentiles: tuple, optional
     """
     
     n_obs = w_mat_ensemble.shape[0]
@@ -1304,17 +1297,14 @@ def anns_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
 
 @jit(nopython=True,fastmath=True,nogil=False,parallel=True)               
 def cw_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
-    """Computes various statistics for (linear) weighted clustering coefficient centrality in the Graph Ensemble
+    """Computes various statistics for (linear) weighted clustering coefficient centrality in the Graph Ensemble, consisting of ensemble average, standard deviation, 
+    percentiles and ensemble distribution.
 
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices for the Graph Ensemble
-        percentiles (tuple, optional): percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
 
-    Returns:
-        avg_stat (np.ndarray): ensemble average of (linear) weighted clustering coefficient centrality
-        std_stat (np.ndarray): ensemble standard deviation of (linear) weighted clustering coefficient centrality
-        percentiles_stat (np.ndarray): ensemble percentiles of (linear) weighted clustering coefficient centrality
-        array_stat (np.ndarray): ensemble distribution of (linear) weighted clustering coefficient centrality
+    :params w_mat_ensemble: weighted adjacency matrices for the Graph Ensemble
+    :params percentiles: percentages for percentile CI extracted from the ensemble. Defaults to (2.5,97.5).
+    :type w_mat_ensemble: np.ndarray
+    :type percentiles: tuple, optional
     """
     
     n_obs = w_mat_ensemble.shape[0]
@@ -1346,15 +1336,18 @@ def cw_ensemble(w_mat_ensemble,percentiles=(2.5,97.5)):
 @jit(nopython=True,fastmath=True)               
 def ensemble_coverage(w_mat_ensemble,wij_emp, percentiles=(2.5,97.5),stats=["degree","annd","clust","strength","anns","cw"]):
     """Computes Statistic Reproduction Accuracy for the network statistics in the stats-list
-
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices in the graph ensemble
-        wij_emp (np.ndarray): empirical weighted adjacency matrix
-        percentiles (tuple, optional): percentages for ensemble percentiles. Defaults to (2.5,97.5).
-        stats (list, optional): list of statistics to compute. Defaults to ["degree","annd","clust","strength","anns","cw"].
-
-    Returns:
-        count_array: list of reproduction accuracies for the network statistics in input list stats.
+    
+    :param w_mat_ensemble: weighted adjacency matrices in the graph ensemble
+    :type w_mat_ensemble: np.ndarray
+    :param wij_emp: empirical weighted adjacency matrix
+    :type wij_emp: np.ndarray
+    :param percentiles: percentages for ensemble percentiles. Defaults to (2.5,97.5).
+    :type percentiles: tuple, optional
+    :param stats:  list of statistics to compute. Defaults to ["degree","annd","clust","strength","anns","cw"].
+    :type stats: list, optional
+    
+    :return count_array: list of reproduction accuracies for the network statistics in input list stats.
+    :rtype count_array: list
     """
     n_obs = w_mat_ensemble.shape[0]
     n_ensemble = w_mat_ensemble.shape[1]
@@ -1455,15 +1448,16 @@ def ensemble_coverage(w_mat_ensemble,wij_emp, percentiles=(2.5,97.5),stats=["deg
 @jit(nopython=True,fastmath=True,cache=False,parallel=False)               
 def weighted_coverage(w_mat_ensemble,wij_emp, percentiles=(2.5,97.5)):
     """Computes Reproduction Accuracy for the weights
-
-    Args:
-        w_mat_ensemble (np.ndarray): weighted adjacency matrices in the graph ensemble
-        wij_emp (np.ndarray): empirical weighted adjacency matrix
-        percentiles (tuple, optional): percentages for ensemble percentiles. Defaults to (2.5,97.5).
     
-    Returns:
-        count_array: list of reproduction accuracies for the weights.
+    :param w_mat_ensemble: weighted adjacency matrices in the graph ensemble
+    :type w_mat_ensemble: np.ndarray
+    :param wij_emp: empirical weighted adjacency matrix
+    :type wij_emp: np.ndarray
+    :param percentiles: percentages for ensemble percentiles. Defaults to (2.5,97.5).
+    :type percentiles: tuple, optional
     
+    :return count_array: list of reproduction accuracies for the weights.
+    :rtype count_array: list
     """
     n_obs = w_mat_ensemble.shape[0]
     n_ensemble = w_mat_ensemble.shape[1]
