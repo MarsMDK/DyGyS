@@ -3,4 +3,4 @@ wheel
 numpy ~= 1.21.5
 numba ~= 0.55.1
 numba-scipy ~= 0.3.1
-DyGyS ~= 0.0.1
+DyGyS 
