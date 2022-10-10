@@ -79,9 +79,9 @@ DyGyS can be installed via pip. You can do it from your terminal
 
 If you already installed the package and want to  upgrade it,
 you can type from your terminal:
-
 ::
     $ pip install DyGyS --upgrade
+
 
 Dependencies
 ---------------------
