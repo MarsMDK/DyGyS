@@ -17,7 +17,7 @@ def binarize(input):
             byn[i] = 1.
     return byn 
 
-def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_params=np.array([]),bounds=(-np.inf,np.inf),tol=1e-5,
+def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_params=np.array([]),tol=1e-5,
            use_guess= np.array([]), verbose=False, print_steps= 1, maxiter=20 ):  
     """Solves chosen model using scipy.optimize and scipy.least_squares routines.
 
@@ -27,7 +27,6 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         selection_variables (np.ndarray): regressor matrix for the topological optimization of Zero-Inflated and L-constrained Conditional Models.
         exogenous_variables (np.ndarray): regressor matrix for the weighted optimization
         fixed_selection_params (np.ndarray, optional): fixed parameters for the topological optimization of Zero-Inflated and L-constrained Conditional Models. Defaults to np.array([1.00000,1.0000,0.0000]).
-        bounds (tuple, optional): bounds for optimization in ([inf_list],[sup_list]) form. Defaults to (-np.inf,np.inf).
         tol (np.float64, optional): tolerance for optimization. Defaults to 1e-5.
         use_guess (np.ndarray, optional): optional starter guess for the optimization process. Defaults to np.array([]).
         verbose (bool, optional): True if you want to print iteration values of infinite norm. Defaults to False.
@@ -52,7 +51,7 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         
         while norm > tol and step < maxiter:    
             
-            sol = opt.least_squares(fun=lfC.jac_logit,x0 = sol, verbose=0,args=(Wij,selection_variables,fixed_selection_params),bounds=bounds).x
+            sol = opt.least_squares(fun=lfC.jac_logit,x0 = sol, verbose=0,args=(Wij,selection_variables,fixed_selection_params)).x
             
             ll_lgt = - lfC.ll_logit(sol,Wij,selection_variables,fixed_selection_params)
             jac_lgt = - lfC.jac_logit(sol,Wij,selection_variables,fixed_selection_params)
@@ -217,7 +216,7 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
             except ZeroDivisionError:
                 pass
             try:
-                sol = opt.least_squares(fun = lfE.jac_ZINB, x0 = sol, bounds = bounds,
+                sol = opt.least_squares(fun = lfE.jac_ZINB, x0 = sol, 
                                                     args=(Wij,selection_variables,exogenous_variables,fixed_selection_params)).x
             except ZeroDivisionError:
                 pass
@@ -433,10 +432,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     elif model == "k-CGeom_undirected":
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,print_steps = print_steps,maxiter=maxiter)
         else:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -450,10 +449,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     elif model == "k-CGeom_directed":
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params=np.array([1.00000,1.0000,0.0000]),bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params=np.array([1.00000,1.0000,0.0000]),tol=1e-5,
            use_guess= np.array([]),verbose=verbose,maxiter=maxiter)
         else:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params=np.array([1.00000,1.00000,0.0000]),bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params=np.array([1.00000,1.00000,0.0000]),tol=1e-5,
            use_guess= use_guess[:2*n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -468,17 +467,21 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     elif model == "L-CExp":
         n_selection_variables = selection_variables.shape[1] - len(fixed_selection_params)
         if len(use_guess)==0:
-            topological_params = solver("Logit",Wij,selection_variables,exogenous_variables,fixed_selection_params,verbose=verbose,print_steps = print_steps,use_guess=np.array([]))
+            topological_params = solver("Logit",Wij,selection_variables,exogenous_variables,fixed_selection_params,verbose=verbose,
+                                        print_steps = print_steps,use_guess=np.array([]))
             
         else:  
             
-            topological_params = solver("Logit",Wij,selection_variables,exogenous_variables,fixed_selection_params,verbose=verbose,print_steps = print_steps,use_guess=use_guess[:n_selection_variables])
+            topological_params = solver("Logit",Wij,selection_variables,exogenous_variables,fixed_selection_params,verbose=verbose,
+                                        print_steps = print_steps,use_guess=use_guess[:n_selection_variables])
             
 
         if len(use_guess) == 0:
-            cond_Geom_params = solver("CExp",Wij,selection_variables,exogenous_variables,fixed_selection_params,maxiter=maxiter,print_steps = print_steps,verbose=verbose)
+            cond_Geom_params = solver("CExp",Wij,selection_variables,exogenous_variables,fixed_selection_params,maxiter=maxiter,
+                                      print_steps = print_steps,verbose=verbose)
         else:
-            cond_Geom_params = solver("CExp",Wij,selection_variables,exogenous_variables,fixed_selection_params,maxiter=maxiter,print_steps = print_steps,verbose=verbose,
+            cond_Geom_params = solver("CExp",Wij,selection_variables,exogenous_variables,fixed_selection_params,maxiter=maxiter,
+                                      print_steps = print_steps,verbose=verbose,
                                       use_guess=use_guess[n_selection_variables:])
                 
         result = np.concatenate((topological_params,cond_Geom_params))
@@ -487,10 +490,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     elif model == "k-CExp_undirected":
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,maxiter=maxiter)
         else:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -504,10 +507,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     elif model == "k-CExp_directed":
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,print_steps = print_steps,maxiter=maxiter)
         else:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:2*n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -539,10 +542,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     elif model == "k-CPareto_undirected":
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,print_steps = print_steps,maxiter=maxiter)
         else:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -557,10 +560,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,print_steps = print_steps,maxiter=maxiter)
         else:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:2*n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -594,10 +597,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     elif model == "k-CGamma_undirected":
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,maxiter=maxiter)
         else:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:n_countries],verbose=verbose,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -612,10 +615,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,print_steps = print_steps,maxiter=maxiter)
         else:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:2*n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -647,10 +650,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     elif model == "k-CLognormal_undirected":
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,print_steps = print_steps,maxiter=maxiter)
         else:
-            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -665,10 +668,10 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         
         n_countries = int(np.sqrt(len(Wij)))
         if len(use_guess) == 0:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=verbose,print_steps = print_steps,maxiter=maxiter)
         else:
-            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            topological_params = solver("DBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= use_guess[:2*n_countries],verbose=verbose,print_steps = print_steps,maxiter=maxiter)
             
         if len(use_guess) == 0:
@@ -680,7 +683,7 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         return result
     
     elif model == "L-IGeom":
-        guess_weighted = solver("POIS",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+        guess_weighted = solver("POIS",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
            use_guess= np.array([]),verbose=False,maxiter=maxiter)
         guess_theta_0 = np.array([6.])      
         beta_linspace = np.linspace(0.99,1.,num=5)[:-1]
@@ -728,7 +731,7 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         return true_result
 
     elif model == "L-IExp":
-        guess_weighted = solver("POIS",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+        guess_weighted = solver("POIS",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
         use_guess= np.array([]),verbose=False,maxiter=maxiter)
         guess_theta_0 = np.array([6.])      
         # beta_linspace = np.linspace(0.99,1.,num=5)[:-1]
@@ -785,9 +788,9 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         Aij = binarize(Wij)
         
         if len(use_guess) == 0:
-            guess_theta_0 = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            guess_theta_0 = solver("UBCM",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
                     use_guess= np.array([]),verbose=False,maxiter=maxiter)
-            guess_other = solver("L-IGeom",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            guess_other = solver("L-IGeom",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
                     use_guess= np.array([]),verbose=False,maxiter=maxiter)
             guess = np.concatenate((guess_theta_0,guess_other[1:]))
             
@@ -865,9 +868,9 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         Aij = binarize(Wij)
         
         if len(use_guess) == 0:
-            guess_theta_0 = solver("DBCM",Wij,selection_variables,exogenous_variables,bounds=(-np.inf,np.inf),tol=1e-5,
+            guess_theta_0 = solver("DBCM",Wij,selection_variables,exogenous_variables,tol=1e-5,
                     use_guess= np.array([]),verbose=False,maxiter=maxiter)
-            guess_other = solver("L-IGeom",Wij,selection_variables,exogenous_variables,bounds=(-np.inf,np.inf),tol=1e-5,
+            guess_other = solver("L-IGeom",Wij,selection_variables,exogenous_variables,tol=1e-5,
                     use_guess= np.array([]),verbose=False,maxiter=maxiter)
             guess = np.concatenate((guess_theta_0,guess_other[1:]))
             
@@ -950,7 +953,7 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         n_select_variables = n_countries
         Aij = binarize(Wij)
         if len(use_guess) == 0:
-            Exp_TS = solver("k-CExp_undirected",Wij,selection_variables,exogenous_variables,fixed_selection_params,bounds=(-np.inf,np.inf),tol=1e-5,
+            Exp_TS = solver("k-CExp_undirected",Wij,selection_variables,exogenous_variables,fixed_selection_params,tol=1e-5,
                 use_guess= np.array([]),verbose=False,maxiter=maxiter)
             guess_weighted = Exp_TS[n_countries:-1]
             guess_theta_0 = Exp_TS[:n_countries]
@@ -1028,9 +1031,9 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
         Aij = binarize(Wij)
         
         if len(use_guess) == 0:
-            guess_theta_0 = solver("DBCM",Wij,selection_variables,exogenous_variables,bounds=(-np.inf,np.inf),tol=1e-5,
+            guess_theta_0 = solver("DBCM",Wij,selection_variables,exogenous_variables,tol=1e-5,
                     use_guess= np.array([]),verbose=False,maxiter=maxiter)
-            guess_other = solver("L-IExp",Wij,selection_variables,exogenous_variables,bounds=(-np.inf,np.inf),tol=1e-5,
+            guess_other = solver("L-IExp",Wij,selection_variables,exogenous_variables,tol=1e-5,
                     use_guess= np.array([]),verbose=False,maxiter=maxiter)
             guess = np.concatenate((guess_theta_0,guess_other[1:]))
             
