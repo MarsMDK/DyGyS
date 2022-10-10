@@ -8,9 +8,9 @@ DyGyS provides a numerous amount of models, described in their undirected declin
 The use of soft constraints enable the user to explicitly constrain network properties such as the number of links, the degree sequence (degree centrality for Undirected Networks and out-degree/in-degree centralities for directed networks), and the total weight (for a small number of viable models).
 
 Furthermore it is not only possible to solve the model and extract the parameters, but also to generate the ensemble, compute a number of network statistics, compute model selection measures such as AIC and BIC, and quantify the reproduction accuracy of:
-- Topology using measures as True Positive Rate, Specificity, Precision, Accuracy, Balanced Accuracy and F1score;
-- Weights, measuring the fraction of weights inside the percentile CI extracted from the ensemble of graphs;
-- Network Statistics, measuring the fraction of nodes for which the network statistics are inside the wanted percentile CI extracted from the ensemble of graphs.
+    - Topology using measures as True Positive Rate, Specificity, Precision, Accuracy, Balanced Accuracy and F1score;
+    - Weights, measuring the fraction of weights inside the percentile CI extracted from the ensemble of graphs;
+    - Network Statistics, measuring the fraction of nodes for which the network statistics are inside the wanted percentile CI extracted from the ensemble of graphs.
 
 To explore Maximum-Entropy modeling on networks, checkout [Maximum Entropy Hub](https://meh.imtlucca.it/).
 
