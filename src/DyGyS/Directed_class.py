@@ -9,71 +9,13 @@ from numba.typed import List
 
 class DirectedGraph:
     
-    """"Directed Graph instance must be initialised with adjacency weighted matrix
-    :params adjacency: Weighted adjacency matrix 
+    """"Directed Graph instance must be initialised with adjacency weighted matrix. An exploratory analysis is conducted during initialization.
+    See .implemented_models, .implemented_network_statistics and .implemented_classifier_statistics for available methods and statistics.
     
-    Returns 
-    :self.adjacency: Weighted adjacency matrix 
-    :self.binary_adjacency: Binary adjacency matrix 
-    :self.degree: Out-Degree centrality 
-    :self.degree_in: In-Degree centrality 
-    :self.annd: Average neighbor degree 
-    :self.clust: Binary Clustering Coefficient 
-    :self.strength: Out-Strenght centrality 
-    :self.strength_in: In-Strenght centrality 
-    :self.anns: Average neighbor strength 
-    :self.clust_w: Linear Weighted Clustering Coefficient 
-    :self.n_edges: number of network edges
-    :self.n_nodes: number of nodes
-    :self.implemented_models: available models in the package."""
+    :params adjacency (np.ndarray,list): Weighted adjacency matrix in numpy 1D, numpy 2D or list format.
     
-    """Undirected Graph instance must be initialised with adjacency weighted matrix
-    On initialization it computes also the core network statistics and the binary adjacency matrix.
+    """
     
-    :param adjacency: Weighted adjacency matrix 
-    :type adjacency: np.ndarray, list
-    
-    
-     
-    :returns self.adjacency: Weighted adjacency matrix 
-    :rtype self.adjacency: np.ndarray 
-    
-    :returns self.binary_adjacency: Binary adjacency matrix 
-    :rtype self.binary_adjacency: np.ndarray 
-    
-    :returns self.degree: Degree centrality 
-    :rtype self.degree: np.ndarray
-    
-    :returns self.degree_in: In-Degree centrality 
-    :rtype self.degree_in: np.ndarray
-     
-    :returns self.annd: Average neighbor degree 
-    :rtype self.annd: np.ndarray
-    
-    
-    :returns self.clust: Binary Clustering Coefficient 
-    :rtype self.clust: np.ndarray
-    
-    :returns self.strength: Out-Strength centrality 
-    :rtype self.strength: np.ndarray
-    
-    :returns self.strength_in: In-Strength centrality 
-    :rtype self.strength_in: np.ndarray
-    
-    :returns self.anns: Average neighbor strength 
-    :rtype self.anns: np.ndarray
-    
-    :returns self.clust_w: Linear Weighted Clustering Coefficient 
-    :rtype self.clust_w: np.ndarray
-    
-    :returns self.n_edges: number of network edges
-    :rtype self.n_edges: float
-    
-    :returns self.n_nodes: number of nodes
-    :rtype self.n_nodes: float
-    
-    :returns self.implemented_models: available models in the package
-    :rtype self.implemented_models: list."""
     
     def __init__(
         self,
@@ -246,20 +188,6 @@ class DirectedGraph:
         :param tol: tolerance for infinite norm in the optimization process
         :type tol: float 
         
-        :returns .params: parameters after optimization
-        :rtype .params: np.ndarray
-        :returns .ll: model log-likelihood valued in .params
-        :rtype .ll: float
-        :returns .jacobian: model jacobian valued in .params
-        :rtype .jacobian: np.ndarray
-        :returns .norm: infinite norm of .jacobian
-        :rtype .norm: float
-        :returns .aic: Akaike Measure 
-        :rtype .aic: float
-        :returns .aic_binary: Akaike Measure restricted to topology
-        :rtype .aic_binary: float
-        :returns .bic: BIC Measure
-        :rtype .bic: float
         """
         self.model = model
         self.exogenous_variables = exogenous_variables
@@ -509,24 +437,15 @@ class DirectedGraph:
             
     def netstats_measures(self,percentiles = (2.5,97.5),stats=[]):
         """Computes available network statistics, 
-        To be used after .solve() and .gen_ensemble(). 
+        To be used after .solve() and .gen_ensemble(). Available attributes are .avg_*, .std_*, .percentiles_* and .array_* where * stands for the wanted statistics,
+        avg_* is namely the ensemble average, std_* is the ensemble standard deviation, percentiles_* is a Tuple made by (percentile[0],percentile[1]) of the ensemble distribution,
+        array_* is the whole ensemble distribution.
         
         :param percentiles: Explicit the percentiles used for the construction of the confidence interval, default is (2.5,97.5) for a 95 CI.
         :type percentiles: Tuple
         :param stats: numpy array or list of available network statistics. The wanted stats must be in the list -.implemented_network_statistics-
         :type stats: list
     
-        :returns self.avg_*: Average value of * network statistic in the graph ensemble.
-        :rtype self.avg_*: np.ndarray
-        
-        :returns self.std_*: Standard Deviation of * network statistic in the graph ensemble.
-        :rtype self.std_*: np.ndarray
-        
-        :returns self.percentiles_*: percentiles of * network statistic in the graph ensemble, default is (2.5,97.5)
-        :rtype self.percentiles_*: np.ndarray
-        
-        :returns self.array_*: Whole array of * network statistics measured on the graph ensemble.
-        :rtype self.array_*: np.ndarray
         """
         if len(stats) == 0:
             stats = self.implemented_network_statistics
