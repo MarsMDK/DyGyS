@@ -34,19 +34,11 @@ When using the module for your scientific research please consider citing:
 
 and
 ::
-    @article{PhysRevResearch.4.033105,
-      title = {Gravity models of networks: Integrating maximum-entropy and econometric approaches},
-      author = {Di Vece, Marzio and Garlaschelli, Diego and Squartini, Tiziano},
-      journal = {Phys. Rev. Research},
-      volume = {4},
-      issue = {3},
-      pages = {033105},
-      numpages = {19},
-      year = {2022},
-      month = {Aug},
-      publisher = {American Physical Society},
-      doi = {10.1103/PhysRevResearch.4.033105},
-      url = {https://link.aps.org/doi/10.1103/PhysRevResearch.4.033105}
+    @misc{2210.01179,
+    Author = {Marzio Di Vece and Diego Garlaschelli and Tiziano Squartini},
+    Title = {Reconciling econometrics with continuous maximum-entropy models},
+    Year = {2022},
+    Eprint = {arXiv:2210.01179},
     }
 
 
@@ -89,7 +81,7 @@ If you already installed the package and want to  upgrade it,
 you can type from your terminal:
 
 ::
-        $ pip install DyGyS --upgrade
+    $ pip install DyGyS --upgrade
 
 Dependencies
 ---------------------
