@@ -148,8 +148,8 @@ You can explore the currently available models using
     G.implemented_models
 use their names as described in this list not to incur in error messages.
 
-In order to solve the models you need to define a *regressor matrix* $$X_w$$ of dimension $$N_{obs} \times k$$ where $$N_{obs} = N^2$$ is the number of observations (equivalent to the square of the number of nodes), and $$k$$ is the number of exogenous variables introduced in the Gravity Specification. 
-For L-Constrained Conditional Models and Zero-Inflated models you ought to define also a regressor matrix $$X_t$$ for the first-stage (or topological) optimization and you can choose to fix some of the first-stage parameters.
+In order to solve the models you need to define a *regressor matrix* $X_w$ of dimension $N_{obs} \times k$ where $N_{obs} = N^2$ is the number of observations (equivalent to the square of the number of nodes), and $k$ is the number of exogenous variables introduced in the Gravity Specification. 
+For L-Constrained Conditional Models and Zero-Inflated models you ought to define also a regressor matrix $X_t$ for the first-stage (or topological) optimization and you can choose to fix some of the first-stage parameters.
 
 When ready you can choose one of the aforementioned models and solve for their parameters using
 ::    
@@ -174,8 +174,8 @@ The graphs are produced using the "default_rng" method for discrete-valued model
 This method returns
 ::
     G.w_ensemble_matrix
-which is a $$N_{obs} \times N_{ensemble}$$ matrix which includes all of the $$N_{ensemble}$$ adjacency matrices in the ensemble.
-Such method behaves well for networks up to $$ N=200 $$ for $$10^{4}$$ ensemble graphs, no test has been done for large networks where G.w_ensemble_matrix could be limited by RAM.
+which is a $N_{obs} \times N_{ensemble}$ matrix which includes all of the $N_{ensemble}$ adjacency matrices in the ensemble.
+Such method behaves well for networks up to $ N=200 $ for $10^{4}$ ensemble graphs, no test has been done for large networks where G.w_ensemble_matrix could be limited by RAM.
 
 
 Computing relevant measures
