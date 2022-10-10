@@ -1,6 +1,6 @@
-![PyPI](https://img.shields.io/pypi/v/nemtropy)  [![License:GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue) [![PRR](https://img.shields.io/badge/PRR-4.033105-orange)](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105)
 
-# DyGyS: DYadic GravitY regression models with Soft constraints
+DyGyS: DYadic GravitY regression models with Soft constraints
+=====================================
 
 DyGyS is a package developed on python3 for Maximum Entropy regression models with gravity specification for undirected and directed network data.
 
@@ -50,7 +50,9 @@ and
     }
 
 ```
-#### Contents
+Contents
+-----------------
+
 - [DyGyS: DYadic GravitY regression models with Soft constraints](#dygys-dyadic-gravity-regression-models-with-soft-constraints)
       - [Contents](#contents)
   - [Currently Available Models](#currently-available-models)
@@ -64,7 +66,9 @@ and
   - [Documentation](#documentation)
   - [Credits](#credits)
 
-##  Currently Available Models
+Currently Available Models
+--------------------------
+
 DyGyS contains models for network data with both continuous and discrete-valued semi-definite positive weights.
 The available models for discrete count data are described in [1](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and consist of:
 * **POIS** *Poisson Model* 
@@ -90,32 +94,34 @@ The analogue models for continuous-valued data are described in [2](https://jour
 
 Please refer to the papers for further details.
 
-## Installation
+Installation
+------------
 DyGyS can be installed via pip. You can do it from your terminal
-```
+::
     $ pip install DyGyS
-```
+
 If you already installed the package and want to  upgrade it,
 you can type from your terminal:
 
-```
+::
     $ pip install DyGyS --upgrade
-```
 
-## Dependencies
+Dependencies
+---------------------
 DyGyS uses the following dependencies:
 * **scipy** for optimization and root solving;
 * **numba** for fast computation of network statistics and criterion functions.
 * **numba-scipy** for fast computation of special functions such as gammaincinv and erfinv.
 
 They can be easily installed via pip typing
-
+::
     $ pip install scipy
     $ pip install numba
     $ pip install numba-scipy
 
 
-## How-to Guidelines
+How-to Guidelines
+------------
 The module containes two classes, namely UndirectedGraph and DirectedGraph.
 An Undirected Graph is defined as a network where weights are reciprocal, i.e., $$w_{ij} = w_{ji}$$ where $$w_{ij}$$ is the network weight from node $$i$$ to node $$j$$. 
 If weights are not reciprocal, please use the DirectedGraph class.
@@ -123,6 +129,7 @@ If weights are not reciprocal, please use the DirectedGraph class.
 ### Class Instance and Empirical Network Statistics
 To inizialize an UndirectedGraph or DirectedGraph instance you can type:
 
+::
     G = UndirectedGraph(adjacency=Wij)
     or
     G = DirectedGraph(adjacency=Wij)
@@ -133,9 +140,10 @@ These are available using the respective codewords:
 
     G.degree, G.degree_in, G.annd, G.clust, G.strength, G.strength_in, G.anns, G.clust_w
 
-### Solving the models
+Solving the models
+------------
 You can explore the currently available models using
-    
+::    
     G.implemented_models
 use their names as described in this list not to incur in error messages.
 
@@ -143,52 +151,52 @@ In order to solve the models you need to define a *regressor matrix* $$X_w$$ of 
 For L-Constrained Conditional Models and Zero-Inflated models you ought to define also a regressor matrix $$X_t$$ for the first-stage (or topological) optimization and you can choose to fix some of the first-stage parameters.
 
 When ready you can choose one of the aforementioned models and solve for their parameters using
-    
+::    
     G.solve(model= <chosen model>,exogenous_variables = X_w, selection_variables = X_t,
         fixed_selection_parameters = <chosen fixed selection parameters>)
 
 Once you solved the model various other attributes become visible and measures dependent solely on criterion functions are computed. These include Loglikelihood, Jacobian, Infinite Jacobian Norm, AIC, Binary AIC and BIC, available using the codewords:
-
+::
     G.ll, G.jacobian, G.norm, G.aic, G.aic_binary, G.bic
 
 For further details on the .solve functions please see the documentation.
 
 
 
-### Generating the network ensemble 
-
+Generating the network ensemble 
+----------------
 Generating the network ensemble is very easy. It's enough to type:
-    
+::    
     G.gen_ensemble(n_ensemble=<wanted number of graphs>)
 The graphs are produced using the "default_rng" method for discrete-valued models or using Inverse Transform Sampling for continuous-valued models.
 
 This method returns
-
+::
     G.w_ensemble_matrix
 which is a $$N_{obs} \times N_{ensemble}$$ matrix which includes all of the $$N_{ensemble}$$ adjacency matrices in the ensemble.
 Such method behaves well for networks up to $$ N=200 $$ for $$10^{4}$$ ensemble graphs, no test has been done for large networks where G.w_ensemble_matrix could be limited by RAM.
 
 
-### Computing relevant measures
-
+Computing relevant measures
+----------------
 Let's start by showing how to compute topology-related measures. 
 You can type:
-    
+::    
     G.classification_measures(n_ensemble=<wanted number of graphs>,percentiles = (inf_p, sup_p), stats =[<list of wanted statistics>])
 This method does not need G.w_ensemble_matrix so you can use it without generating the ensemble of weighted networks.
 The statistics you can compute are listed in G.implemented_classifier_statistics and once you define the number of networks, the ensemble percentiles and statistics of interest, it returns
-
+::
     G.avg_*, G.std_*, G.percentiles_*, G.array_*
 where "avg" stands for ensemble average, "std" for ensemble standard deviation, "array" stands for the entire measures on each ensemble graph, "percentiles" is a tuple containing the inf_p-percentile (default 2.5) and sup_p-percentile (default 97.5) in the ensemble and * is the statistic of interest, written as in G.implemented_classifier_statistics.
 
 
 To compute network statistics you can type:
-
+::
     G.netstats_measures(percentiles=(inf_p, sup_p), stats = [<list of wanted statistics>])
 This method needs the previous computation of G.w_ensemble_matrix.
 It computes average, standard deviation, percentiles and ensemble arrays of the network statistics of interest which can be seen in G.implemented_network_statistics.
 It returns:
-
+::
     G.avg_*, G.std_*, G.percentiles_*, G.array_*
 
 To compute the reproduction accuracy for the network statistics (introduced in [2]) you can type:
@@ -197,20 +205,18 @@ To compute the reproduction accuracy for the network statistics (introduced in [
 This method needs the previous computation of G.w_ensemble_matrix.
 It computes the fraction of nodes for which the network measure is inside a percentile CI extracted from the graph ensemble.
 It returns
-    
+::    
     G.RA_s
 i.e., a list of reproduction accuracies for each of the network statistics introduced via -stats- list arranged according to its order.
 
 Finally, you can compute the reproduction accuracy for the weights (introduced in [2]) using:
-
+::
     G.reproduction_accuracy_w(percentiles=(inf_p,sup_p))
 This method needs the previous computation of G.w_ensemble_matrix.
 It computes the fraction of empirical weights which fall inside the percentile CI interval given by the inf_p-percentile  and sup_p-percentile, extracted from the graph ensemble and it returns as the attribute 
-
+::
     G.RA_w.
 
-## Documentation
-You can find the complete documentation of the DyGyS library in [documentation]()
 
 ## Credits
 
