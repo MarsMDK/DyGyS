@@ -14,41 +14,7 @@ class UndirectedGraph:
     :param adjacency: Weighted adjacency matrix 
     :type adjacency: np.ndarray, list
     
-    
-     
-    :returns self.adjacency: Weighted adjacency matrix 
-    :rtype self.adjacency: np.ndarray 
-    
-    :returns self.binary_adjacency: Binary adjacency matrix 
-    :rtype self.binary_adjacency: np.ndarray 
-    
-    :returns self.degree: Degree centrality 
-    :rtype self.degree: np.ndarray
-     
-    :returns self.annd: Average neighbor degree 
-    :rtype self.annd: np.ndarray
-    
-    
-    :returns self.clust: Binary Clustering Coefficient 
-    :rtype self.clust: np.ndarray
-    
-    :returns self.strength: Strength centrality 
-    :rtype self.strength: np.ndarray
-    
-    :returns self.anns: Average neighbor strength 
-    :rtype self.anns: np.ndarray
-    
-    :returns self.clust_w: Linear Weighted Clustering Coefficient 
-    :rtype self.clust_w: np.ndarray
-    
-    :returns self.n_edges: number of network edges
-    :rtype self.n_edges: float
-    
-    :returns self.n_nodes: number of nodes
-    :rtype self.n_nodes: float
-    
-    :returns self.implemented_models: available models in the package
-    :rtype self.implemented_models: list."""
+    """
     
     def __init__(
         self,
@@ -217,21 +183,7 @@ class UndirectedGraph:
         
         :param tol: tolerance for infinite norm in the optimization process
         :type tol: float 
-        
-        :returns .params: parameters after optimization
-        :rtype .params: np.ndarray
-        :returns .ll: model log-likelihood valued in .params
-        :rtype .ll: float
-        :returns .jacobian: model jacobian valued in .params
-        :rtype .jacobian: np.ndarray
-        :returns .norm: infinite norm of .jacobian
-        :rtype .norm: float
-        :returns .aic: Akaike Measure 
-        :rtype .aic: float
-        :returns .aic_binary: Akaike Measure restricted to topology
-        :rtype .aic_binary: float
-        :returns .bic: BIC Measure
-        :rtype .bic: float
+       
         """
         
         self.model = model
@@ -456,18 +408,6 @@ class UndirectedGraph:
         :param stats: numpy array or list of classifier statistics in string format.
         :type stats: list of strings
         
-        :returns self.avg_*: Average value of * classifier statistic in the graph ensemble.
-        :rtype self.avg_*: float
-        
-        :returns self.std_*: Standard Deviation of * classifier statistic in the graph ensemble.
-        :rtype self.std_*: float
-        
-        :returns self.percentiles_*: percentiles of * classifier statistic in the graph ensemble, default is (2.5,97.5)
-        :rtype self.percentiles_*: tuple
-        
-        :returns self.array_*: Whole array of * classifier statistics measured on the graph ensemble.
-        :rtype self.array_*: np.ndarray
-        
         """
         
         if len(stats) == 0:
@@ -501,18 +441,7 @@ class UndirectedGraph:
         :type percentiles: Tuple
         :param stats: numpy array or list of available network statistics. The wanted stats must be in the list -.implemented_network_statistics-
         :type stats: list
-    
-        :returns self.avg_*: Average value of * network statistic in the graph ensemble.
-        :rtype self.avg_*: np.ndarray
-        
-        :returns self.std_*: Standard Deviation of * network statistic in the graph ensemble.
-        :rtype self.std_*: np.ndarray
-        
-        :returns self.percentiles_*: percentiles of * network statistic in the graph ensemble, default is (2.5,97.5)
-        :rtype self.percentiles_*: np.ndarray
-        
-        :returns self.array_*: Whole array of * network statistics measured on the graph ensemble.
-        :rtype self.array_*: np.ndarray
+   
         """
         if len(stats) == 0:
             stats = self.implemented_network_statistics
