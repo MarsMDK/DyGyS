@@ -66,7 +66,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 # Set the master file
-master_doc = 'index.rst'
+master_doc = 'index'
 
 # Show also documentation for _init_
 autoclass_content = 'both'
