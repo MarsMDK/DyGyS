@@ -110,7 +110,8 @@ To inizialize an UndirectedGraph or DirectedGraph instance you can type:
 
 ::
     G = UndirectedGraph(adjacency=Wij)
-    or
+or
+::  
     G = DirectedGraph(adjacency=Wij)
 where Wij is the weighted adjacency matrix in 1-D (dense) or 2-D numpy array format.
 
