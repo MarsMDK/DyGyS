@@ -214,5 +214,4 @@ Credits
 
 *Acknowledgments*:
 The module was developed under the supervision of [Diego Garlaschelli](https://www.imtlucca.it/en/diego.garlaschelli) and [Tiziano Squartini](https://www.imtlucca.it/en/tiziano.squartini).
-It was developed at [IMT School for Advanced Studies Lucca](https://www.imtlucca.it/en) and financed by the IMT research project PAI PROCOPE - "Prosociality, Cognition and Peer Effects".
-
+It was developed at [IMT School for Advanced Studies Lucca](https://www.imtlucca.it/en) and is supported by the Italian ‘Programma di Attività Integrata’ (PAI) project ‘Prosociality, Cognition and Peer Effects’ (Pro.Co.P.E.), funded by IMT School for Advanced Studies.
