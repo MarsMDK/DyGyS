@@ -45,8 +45,8 @@ def solver(model,Wij,selection_variables,exogenous_variables,fixed_selection_par
     
     :raise TypeError: If chosen model is not correctly written or not implemented. See self.implemented_models to see available models.
 
-    :return sol: estimated model solution
-    :rtype sol: np.ndarray
+    :return: estimated model solution
+    :rtype: np.ndarray
     """
     
     if model == "Logit":
