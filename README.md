@@ -202,7 +202,7 @@ It computes the fraction of empirical weights which fall inside the percentile C
     G.RA_w.
 
 ## Documentation
-You can find the complete documentation of the DyGyS library in [documentation]()
+You can find the complete documentation of the DyGyS library in [documentation](https://dygys.readthedocs.io/en/latest/index.html)
 
 ## Credits
 
