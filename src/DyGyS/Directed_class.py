@@ -372,7 +372,7 @@ class DirectedGraph:
         :param n_ensemble: Number of wanted Graph realizations
         :type n_ensemble: int
         
-        :returns self.w_ensemble_matrix: N_obs X n_ensemble numpy matrix that collects all the ensemble adjacency matrices
+        :return self.w_ensemble_matrix: N_obs X n_ensemble numpy matrix that collects all the ensemble adjacency matrices
         :rtype self.w_ensemble_matrix: np.ndarray
         """
         if self.model in self.continuous_models:
@@ -401,16 +401,16 @@ class DirectedGraph:
         :param stats: numpy array or list of classifier statistics in string format.
         :type stats: list of strings
         
-        :returns self.avg_*: Average value of * classifier statistic in the graph ensemble.
+        :return self.avg_*: Average value of * classifier statistic in the graph ensemble.
         :rtype self.avg_*: float
         
-        :returns self.std_*: Standard Deviation of * classifier statistic in the graph ensemble.
+        :return self.std_*: Standard Deviation of * classifier statistic in the graph ensemble.
         :rtype self.std_*: float
         
-        :returns self.percentiles_*: percentiles of * classifier statistic in the graph ensemble, default is (2.5,97.5)
+        :return self.percentiles_*: percentiles of * classifier statistic in the graph ensemble, default is (2.5,97.5)
         :rtype self.percentiles_*: tuple
         
-        :returns self.array_*: Whole array of * classifier statistics measured on the graph ensemble.
+        :return self.array_*: Whole array of * classifier statistics measured on the graph ensemble.
         :rtype self.array_*: np.ndarray
         
         """
@@ -476,7 +476,7 @@ class DirectedGraph:
         :param stats: numpy array or list of network statistics for which it is possible to recover RA_s. The wanted stats must be in the list -.implemented_network_statistics-
         :type stats: list of strings
         
-        :returns self.RA_s: L-list where L is the number of statistics, the order follows the input stats array
+        :return self.RA_s: L-list where L is the number of statistics, the order follows the input stats array
         :rtype self.RA_s: list of float
         """
         if len(stats) == 0:
@@ -494,7 +494,7 @@ class DirectedGraph:
         :param percentiles: Explicit the percentiles used for the construction of the confidence interval, default is (2.5,97.5) for a 95 CI.
         :type percentiles: Tuple
         
-        :returns self.RA_w: A number (0,1) that explicits RA_w
+        :return self.RA_w: A number (0,1) that explicits RA_w
         :rtype self.RA_w: np.ndarray
         """
         self.RA_w = nF.weighted_coverage(self.w_ensemble_matrix,self.adjacency, percentiles)
