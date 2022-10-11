@@ -1,8 +1,6 @@
 Classes, Solvers and Utilities
 =====================
 
-Undirected Graph
--------------
 
 .. automodule:: DyGyS.Undirected_class
     :members:
