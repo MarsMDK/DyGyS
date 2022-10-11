@@ -360,8 +360,8 @@ class UndirectedGraph:
         :param n_ensemble: Number of wanted Graph realizations
         :type n_ensemble: int
         
-        :returns self.w_ensemble_matrix: N_obs X n_ensemble numpy matrix that collects all the ensemble adjacency matrices
-        :rtype self.w_ensemble_matrix: np.ndarray
+        :return: N_obs X n_ensemble numpy matrix that collects all the ensemble adjacency matrices
+        :rtype: np.ndarray
         """
         if self.model in self.continuous_models:
             w_mat_ensemble = eF.faster_ensemble_matrix_undirected(params=self.params,Wij=self.adjacency,
@@ -386,8 +386,8 @@ class UndirectedGraph:
         :param stats: numpy array or list of network statistics for which it is possible to recover RA_s. The wanted stats must be in the list -.implemented_network_statistics-
         :type stats: list of strings
         
-        :returns self.RA_s: L-list where L is the number of statistics, the order follows the input stats array
-        :rtype self.RA_s: list of float
+        :return: L-list where L is the number of statistics, the order follows the input stats array
+        :rtype: list of float
         """
         
         if len(stats) == 0:
@@ -468,8 +468,8 @@ class UndirectedGraph:
         :param percentiles: Explicit the percentiles used for the construction of the confidence interval, default is (2.5,97.5) for a 95 CI.
         :type percentiles: Tuple
         
-        :returns self.RA_w: A number (0,1) that explicits RA_w
-        :rtype self.RA_w: np.ndarray
+        :return: A number (0,1) that explicits RA_w
+        :rtype: np.ndarray
         """
         self.RA_w = nF.weighted_coverage(self.w_ensemble_matrix,self.adjacency, percentiles)
         
