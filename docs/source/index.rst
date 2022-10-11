@@ -107,7 +107,7 @@ How-to Guidelines
 ===============================
 
 The module containes two classes, namely UndirectedGraph and DirectedGraph.
-An Undirected Graph is defined as a network where weights are reciprocal, i.e., :math:`w_{ij} = w_{ji}` where :math:`w_{ij}` is the network weight from node :math:`i` to node :math:`j`. 
+An Undirected Graph is defined as a network where weights are reciprocal, i.e., :math:`$w_{ij} = w_{ji}$` where :math:`w_{ij}` is the network weight from node :math:`i` to node :math:`j`. 
 If weights are not reciprocal, please use the DirectedGraph class.
 
 Class Instance and Empirical Network Statistics
