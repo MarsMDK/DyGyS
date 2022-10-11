@@ -107,7 +107,7 @@ How-to Guidelines
 ===============================
 
 The module containes two classes, namely UndirectedGraph and DirectedGraph.
-An Undirected Graph is defined as a network where weights are reciprocal, i.e., :math:`$w_{ij} = w_{ji}$` where :math:`$w_{ij}$` is the network weight from node :math:`$i$` to node :math:`$j$`. 
+An Undirected Graph is defined as a network where weights are reciprocal, i.e., :math:`w_{ij} = w_{ji}` where :math:`w_{ij}` is the network weight from node :math:`i` to node :math:`j`. 
 If weights are not reciprocal, please use the DirectedGraph class.
 
 Class Instance and Empirical Network Statistics
@@ -140,8 +140,8 @@ You can explore the currently available models using
     G.implemented_models
 use their names as described in this list not to incur in error messages.
 
-In order to solve the models you need to define a *regressor matrix* :math:`$X_w$` of dimension :math:`$N_{obs} \times k$` where :math:`$N_{obs} = N^2$` is the number of observations (equivalent to the square of the number of nodes), and :math:`$k$` is the number of exogenous variables introduced in the Gravity Specification. 
-For L-Constrained Conditional Models and Zero-Inflated models you ought to define also a regressor matrix $X_t$ for the first-stage (or topological) optimization and you can choose to fix some of the first-stage parameters.
+In order to solve the models you need to define a *regressor matrix* :math:`X_w` of dimension :math:`N_{obs} \times k` where :math:`N_{obs} = N^2` is the number of observations (equivalent to the square of the number of nodes), and :math:`k` is the number of exogenous variables introduced in the Gravity Specification. 
+For L-Constrained Conditional Models and Zero-Inflated models you ought to define also a regressor matrix :math:`X_t` for the first-stage (or topological) optimization and you can choose to fix some of the first-stage parameters.
 
 When ready you can choose one of the aforementioned models and solve for their parameters using
 ::    
@@ -167,8 +167,8 @@ The graphs are produced using the "default_rng" method for discrete-valued model
 This method returns
 ::
     G.w_ensemble_matrix
-which is a :math:`$(N_{obs},N_{ensemble})$` matrix which includes all of the :math:`$N_{ensemble}$` adjacency matrices in the ensemble.
-Such method behaves well for networks up to :math:`$N=200$` for :math:`$10^{4}$` ensemble graphs, no test has been done for large networks where G.w_ensemble_matrix could be limited by RAM.
+which is a :math:`(N_{obs},N_{ensemble})` matrix which includes all of the :math:`N_{ensemble}` adjacency matrices in the ensemble.
+Such method behaves well for networks up to :math:`N=200` for :math:`10^{4}` ensemble graphs, no test has been done for large networks where G.w_ensemble_matrix could be limited by RAM.
 
 
 Computing relevant measures
