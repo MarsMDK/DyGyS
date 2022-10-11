@@ -183,7 +183,7 @@ It returns:
 
     G.avg_*, G.std_*, G.percentiles_*, G.array_*
 
-To compute the reproduction accuracy for the network statistics (introduced in [2]) you can type:
+To compute the reproduction accuracy for the network statistics (introduced in [2](https://arxiv.org/abs/2210.01179)) you can type:
     
     G.reproduction_accuracy_s(percentiles=(inf_p,sup_p),stats=[])
 This method needs the previous computation of G.w_ensemble_matrix.
@@ -193,7 +193,7 @@ It returns
     G.RA_s
 i.e., a list of reproduction accuracies for each of the network statistics introduced via -stats- list arranged according to its order.
 
-Finally, you can compute the reproduction accuracy for the weights (introduced in [2]) using:
+Finally, you can compute the reproduction accuracy for the weights (introduced in [2](https://arxiv.org/abs/2210.01179)) using:
 
     G.reproduction_accuracy_w(percentiles=(inf_p,sup_p))
 This method needs the previous computation of G.w_ensemble_matrix.
