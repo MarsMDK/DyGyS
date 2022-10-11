@@ -272,8 +272,8 @@ def pij_matrix_undirected(params,method,Wij,selection_variables = np.array([]),e
     :type n_ensemble: int, optional
     
     
-    :return top_mat: topological expected matrix in 1-D form
-    :rtype top_mat: np.ndarray
+    :return: topological expected matrix in 1-D form
+    :rtype: np.ndarray
     """
     
     
@@ -504,8 +504,8 @@ def pij_matrix_directed(params,method,Wij,selection_variables = np.array([]),exo
     :type n_ensemble: int, optional
     
     
-    :return top_mat: topological expected matrix in 1-D form
-    :rtype top_mat: np.ndarray
+    :return: topological expected matrix in 1-D form
+    :rtype: np.ndarray
     """
     
     top_mat = np.zeros(len(Wij))
@@ -1346,8 +1346,8 @@ def ensemble_coverage(w_mat_ensemble,wij_emp, percentiles=(2.5,97.5),stats=["deg
     :param stats:  list of statistics to compute. Defaults to ["degree","annd","clust","strength","anns","cw"].
     :type stats: list, optional
     
-    :return count_array: list of reproduction accuracies for the network statistics in input list stats.
-    :rtype count_array: list
+    :return: list of reproduction accuracies for the network statistics in input list stats.
+    :rtype: list
     """
     n_obs = w_mat_ensemble.shape[0]
     n_ensemble = w_mat_ensemble.shape[1]
@@ -1456,8 +1456,8 @@ def weighted_coverage(w_mat_ensemble,wij_emp, percentiles=(2.5,97.5)):
     :param percentiles: percentages for ensemble percentiles. Defaults to (2.5,97.5).
     :type percentiles: tuple, optional
     
-    :return count_array: list of reproduction accuracies for the weights.
-    :rtype count_array: list
+    :return: list of reproduction accuracies for the weights.
+    :rtype: list
     """
     n_obs = w_mat_ensemble.shape[0]
     n_ensemble = w_mat_ensemble.shape[1]
