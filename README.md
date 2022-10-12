@@ -83,7 +83,7 @@ The analogue models for continuous-valued data are described in [2](https://arxi
 Please refer to the papers for further details.
 
 ## Installation
-DyGyS can be installed via pip. You can do it from your terminal
+DyGyS can be installed via [pip](https://pypi.org/project/DyGyS/). You can do it from your terminal
 ```
     $ pip install DyGyS
 ```
