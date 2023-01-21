@@ -1,4 +1,4 @@
-![PyPI](https://img.shields.io/pypi/v/nemtropy)  [![License:GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue) [![PRR](https://img.shields.io/badge/PRR-4.033105-orange)](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105) [![CSF](https://img.shields.io/badge/ArXiv-2210.01179-orange)](https://doi.org/10.1016/j.chaos.2022.112958)
+![PyPI](https://img.shields.io/pypi/v/nemtropy)  [![License:GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue) [![PRR](https://img.shields.io/badge/PRR-4.033105-orange)](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105) [![CSF][(https://img.shields.io/badge/CSF-166.112958-orange)](https://doi.org/10.1016/j.chaos.2022.112958)
 
 # DyGyS: DYadic GravitY regression models with Soft constraints
 
