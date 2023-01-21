@@ -1,4 +1,4 @@
-![PyPI](https://img.shields.io/pypi/v/nemtropy)  [![License:GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue) [![PRR](https://img.shields.io/badge/PRR-4.033105-orange)](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105) [![Arxiv](https://img.shields.io/badge/ArXiv-2210.01179-orange)](https://arxiv.org/abs/2210.01179)
+![PyPI](https://img.shields.io/pypi/v/nemtropy)  [![License:GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue) [![PRR](https://img.shields.io/badge/PRR-4.033105-orange)](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105) [![CSF](https://img.shields.io/badge/ArXiv-2210.01179-orange)](https://doi.org/10.1016/j.chaos.2022.112958)
 
 # DyGyS: DYadic GravitY regression models with Soft constraints
 
@@ -34,11 +34,18 @@ When using the module for your scientific research please consider citing:
 ```
 and
 ```
-    @misc{2210.01179,
-    Author = {Marzio Di Vece and Diego Garlaschelli and Tiziano Squartini},
-    Title = {Reconciling econometrics with continuous maximum-entropy models},
-    Year = {2022},
-    Eprint = {arXiv:2210.01179},
+    @article{DIVECE2023112958,
+    title = {Reconciling econometrics with continuous maximum-entropy network models},
+    journal = {Chaos, Solitons & Fractals},
+    volume = {166},
+    pages = {112958},
+    year = {2023},
+    issn = {0960-0779},
+    doi = {https://doi.org/10.1016/j.chaos.2022.112958},
+    url = {https://www.sciencedirect.com/science/article/pii/S0960077922011377},
+    author = {Marzio {Di Vece} and Diego Garlaschelli and Tiziano Squartini},
+    keywords = {Shannon entropy, Network reconstruction, Econophysics, Econometrics, Trade, Gravity},
+    abstract = {In the study of economic networks, econometric approaches interpret the traditional Gravity Model specification as the expected link weight coming from a probability distribution whose functional form can be chosen arbitrarily, while statistical-physics approaches construct maximum-entropy distributions of weighted graphs, constrained to satisfy a given set of measurable network properties. In a recent, companion paper, we integrated the two approaches and applied them to the World Trade Web, i.e. the network of international trade among world countries. While the companion paper dealt only with discrete-valued link weights, the present paper extends the theoretical framework to continuous-valued link weights. In particular, we construct two broad classes of maximum-entropy models, namely the integrated and the conditional ones, defined by different criteria to derive and combine the probabilistic rules for placing links and loading them with weights. In the integrated models, both rules follow from a single, constrained optimization of the continuous Kullback–Leibler divergence; in the conditional models, the two rules are disentangled and the functional form of the weight distribution follows from a conditional, optimization procedure. After deriving the general functional form of the two classes, we turn each of them into a proper family of econometric models via a suitable identification of the econometric function relating the corresponding, expected link weights to macroeconomic factors. After testing the two classes of models on World Trade Web data, we discuss their strengths and weaknesses.}
     }
 
 ```
