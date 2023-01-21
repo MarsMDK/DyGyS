@@ -1,10 +1,10 @@
-![PyPI](https://img.shields.io/pypi/v/nemtropy)  [![License:GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue) [![PRR](https://img.shields.io/badge/PRR-4.033105-orange)](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105) [![CSF][(https://img.shields.io/badge/CSF-166.112958-orange)](https://doi.org/10.1016/j.chaos.2022.112958)
+![PyPI](https://img.shields.io/pypi/v/nemtropy)  [![License:GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue) [![PRR](https://img.shields.io/badge/PRR-4.033105-orange)](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105) [![CSF](https://img.shields.io/badge/CSF-166.112958-orange)](https://doi.org/10.1016/j.chaos.2022.112958)
 
 # DyGyS: DYadic GravitY regression models with Soft constraints
 
 DyGyS is a package developed on python3 for Maximum Entropy regression models with gravity specification for undirected and directed network data.
 
-DyGyS provides a numerous amount of models, described in their undirected declination in articles [1](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and [2](https://arxiv.org/abs/2210.01179) and consisting of both econometric and statistical physics-inspired models.
+DyGyS provides a numerous amount of models, described in their undirected declination in articles [1](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.033105#) and [2](https://doi.org/10.1016/j.chaos.2022.112958) and consisting of both econometric and statistical physics-inspired models.
 The use of soft constraints enable the user to explicitly constrain network properties such as the number of links, the degree sequence (degree centrality for Undirected Networks and out-degree/in-degree centralities for directed networks), and the total weight (for a small number of viable models).
 
 Furthermore it is not only possible to solve the model and extract the parameters, but also to generate the ensemble, compute a number of network statistics, compute model selection measures such as AIC and BIC, and quantify the reproduction accuracy of:
